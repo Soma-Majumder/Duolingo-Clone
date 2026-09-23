@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+  --color-duo-green: #58cc02;
+  --color-duo-green-dark: #58a700;
+  --color-duo-blue: #1cb0f6;
+  --color-duo-blue-dark: #1899d6;
+  --color-duo-red: #ff4b4b;
+  --color-duo-red-dark: #ea2b2b;
+  --color-duo-yellow: #ffc800;
+  --color-duo-yellow-dark: #e5b002;
+  --color-duo-orange: #ff9600;
+  --color-duo-orange-dark: #e08600;
+  --color-duo-purple: #ce82ff;
+  --color-duo-purple-dark: #a568cc;
+  --color-duo-gray-100: #f7f7f7;
+  --color-duo-gray-200: #e5e5e5;
+  --color-duo-gray-300: #cecece;
+  --color-duo-gray-400: #afafaf;
+  --color-duo-gray-500: #777777;
+  --color-duo-gray-700: #4b4b4b;
+  --color-duo-eel: #3c3c3c;
+  --font-sans: var(--font-nunito);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: var(--color-duo-eel);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-nunito), Arial, Helvetica, sans-serif;
+}
+
+@keyframes duo-pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes duo-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes duo-pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(88, 204, 2, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 14px rgba(88, 204, 2, 0);
+  }
+}
+
+@keyframes duo-slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-duo-pop {
+  animation: duo-pop 0.35s ease;
+}
+
+.animate-duo-bounce {
+  animation: duo-bounce 1.1s ease-in-out infinite;
+}
+
+.animate-duo-pulse-ring {
+  animation: duo-pulse-ring 1.6s ease-out infinite;
+}
+
+.animate-duo-slide-up {
+  animation: duo-slide-up 0.22s ease-out;
+}

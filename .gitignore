@@ -33,6 +33,13 @@ logs/
 .DS_Store
 Thumbs.db
 
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Vercel
+.vercel
+
 # Misc
 *.local
 .cache/
