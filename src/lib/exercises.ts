@@ -18,7 +18,7 @@ export interface WordBankExercise {
 
 export type Exercise = MultipleChoiceExercise | WordBankExercise;
 
-export interface DailyLesson {
+export interface Lesson {
   id: string;
   title: string;
   exercises: Exercise[];

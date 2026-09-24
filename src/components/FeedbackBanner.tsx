@@ -10,7 +10,7 @@ export function FeedbackBanner({
   return (
     <div
       className={`animate-duo-slide-up flex items-center gap-3 px-4 py-4 sm:px-8 ${
-        isCorrect ? "bg-green-50" : "bg-red-50"
+        isCorrect ? "bg-duo-green-light" : "bg-duo-red-light"
       }`}
     >
       <div

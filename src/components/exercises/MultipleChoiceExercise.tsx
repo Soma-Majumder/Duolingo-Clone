@@ -24,13 +24,13 @@ export function MultipleChoiceExercise({
           let optionClasses =
             "border-duo-gray-200 bg-white text-duo-eel hover:bg-duo-gray-100";
           if (checked && isSelected && isCorrect) {
-            optionClasses = "border-duo-green bg-green-50 text-duo-green-dark";
+            optionClasses = "border-duo-green bg-duo-green-light text-duo-green-dark";
           } else if (checked && isSelected && !isCorrect) {
-            optionClasses = "border-duo-red bg-red-50 text-duo-red-dark";
+            optionClasses = "border-duo-red bg-duo-red-light text-duo-red-dark";
           } else if (checked && !isSelected && isAnswer) {
-            optionClasses = "border-duo-green bg-green-50 text-duo-green-dark";
+            optionClasses = "border-duo-green bg-duo-green-light text-duo-green-dark";
           } else if (isSelected) {
-            optionClasses = "border-duo-blue bg-blue-50 text-duo-blue-dark";
+            optionClasses = "border-duo-blue bg-duo-blue-light text-duo-blue-dark";
           }
 
           return (

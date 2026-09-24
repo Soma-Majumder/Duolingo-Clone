@@ -1,19 +1,16 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useProgress } from "@/hooks/useProgress";
-import { getLessonForLanguage } from "@/lib/lessonContent";
-import { isDoneToday, getStreakStatus } from "@/lib/progress";
+import { getStreakStatus } from "@/lib/progress";
 import { AppHeader } from "@/components/AppHeader";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { LessonPath } from "@/components/LessonPath";
 import { WeekStreakCalendar } from "@/components/WeekStreakCalendar";
-import { OwlMascot } from "@/components/OwlMascot";
+import { DragonMascot } from "@/components/DragonMascot";
 import { ClioMascot } from "@/components/ClioMascot";
 
 export default function Home() {
-  const router = useRouter();
   const { language, languageId, setLanguageId, hydrated: langHydrated } = useLanguage();
   const { progress, hydrated: progressHydrated } = useProgress();
 
@@ -21,8 +18,6 @@ export default function Home() {
     return <div className="min-h-screen bg-white" />;
   }
 
-  const lesson = getLessonForLanguage(language.id);
-  const doneToday = isDoneToday(progress);
   const streakStatus = getStreakStatus(progress);
 
   return (
@@ -35,7 +30,7 @@ export default function Home() {
         </div>
 
         {streakStatus === "at-risk" && (
-          <div className="flex items-center gap-3 rounded-2xl border-2 border-duo-orange bg-orange-50 px-4 py-3">
+          <div className="flex items-center gap-3 rounded-2xl border-2 border-duo-orange bg-duo-orange-light px-4 py-3">
             <span className="text-2xl">🔥</span>
             <p className="text-sm font-bold text-duo-orange-dark">
               Your {progress.currentStreak}-day streak is at risk! Finish today&apos;s lesson to keep it
@@ -46,14 +41,10 @@ export default function Home() {
 
         <section className="flex flex-col items-center rounded-3xl border-2 border-duo-gray-200 bg-duo-gray-100 py-8">
           <div className="flex items-end gap-2">
-            <OwlMascot className="h-20 w-20" />
+            <DragonMascot className="h-20 w-20" />
             <ClioMascot className="h-20 w-20" />
           </div>
-          <LessonPath
-            lessonTitle={lesson.title}
-            doneToday={doneToday}
-            onStart={() => router.push(doneToday ? "/lesson/practice" : "/lesson")}
-          />
+          <LessonPath languageId={language.id} progress={progress} />
         </section>
 
         <section className="flex flex-col gap-4 rounded-3xl border-2 border-duo-gray-200 p-5">

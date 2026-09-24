@@ -11,6 +11,8 @@ export interface ProgressState {
   longestStreak: number;
   lastCompletedDate: string | null;
   history: DayRecord[];
+  /** IDs of every lesson (path lesson or bonus practice) ever completed. Drives path unlocking. */
+  completedLessonIds: string[];
 }
 
 export const EMPTY_PROGRESS: ProgressState = {
@@ -20,6 +22,7 @@ export const EMPTY_PROGRESS: ProgressState = {
   longestStreak: 0,
   lastCompletedDate: null,
   history: [],
+  completedLessonIds: [],
 };
 
 const HISTORY_LIMIT = 30;
@@ -79,7 +82,8 @@ export interface LessonResult {
 /**
  * Applies a completed lesson to the progress record. Only the first
  * completion of a given day advances the streak; extra practice on the same
- * day still earns XP and counts toward lessonsCompleted.
+ * day still earns XP and counts toward lessonsCompleted. Users can complete
+ * more than one path lesson per day — the streak just doesn't double-count it.
  */
 export function completeLesson(
   progress: ProgressState,
@@ -97,6 +101,10 @@ export function completeLesson(
     ? progress.history.map((h) => (h.date === today ? { ...h, xp: h.xp + xpEarned } : h))
     : [...progress.history, { date: today, xp: xpEarned, lessonId }].slice(-HISTORY_LIMIT);
 
+  const completedLessonIds = progress.completedLessonIds.includes(lessonId)
+    ? progress.completedLessonIds
+    : [...progress.completedLessonIds, lessonId];
+
   return {
     totalXP: progress.totalXP + xpEarned,
     lessonsCompleted: progress.lessonsCompleted + 1,
@@ -104,7 +112,21 @@ export function completeLesson(
     longestStreak: Math.max(progress.longestStreak, currentStreak),
     lastCompletedDate: today,
     history,
+    completedLessonIds,
   };
+}
+
+/**
+ * The index of the first not-yet-completed lesson in a path — i.e. the one
+ * lesson currently unlocked and available to start. Lessons before it are
+ * complete; lessons after it are locked. Equals path.length once every
+ * lesson in the path has been completed.
+ */
+export function getUnlockedIndex(progress: ProgressState, path: { id: string }[]): number {
+  for (let i = 0; i < path.length; i++) {
+    if (!progress.completedLessonIds.includes(path[i].id)) return i;
+  }
+  return path.length;
 }
 
 const XP_PER_EXERCISE = 10;
