@@ -6,6 +6,7 @@ import {
   LessonResult,
   ProgressState,
   completeLesson,
+  normalizeProgress,
   reconcileStreak,
 } from "@/lib/progress";
 
@@ -21,9 +22,10 @@ export function useProgress() {
     // extra render when the persisted value differs from EMPTY_PROGRESS.
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      // Spread over EMPTY_PROGRESS so fields added after a user's progress was
-      // first persisted (e.g. completedLessonIds) default in instead of being undefined.
-      const parsed: ProgressState = raw ? { ...EMPTY_PROGRESS, ...JSON.parse(raw) } : EMPTY_PROGRESS;
+      // normalizeProgress both fills in fields added after a user's progress
+      // was first persisted and guards against a corrupted/tampered value
+      // (wrong types) crashing the app later.
+      const parsed: ProgressState = raw ? normalizeProgress(JSON.parse(raw)) : EMPTY_PROGRESS;
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setProgress(reconcileStreak(parsed));
     } catch {

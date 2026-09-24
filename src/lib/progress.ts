@@ -27,6 +27,46 @@ export const EMPTY_PROGRESS: ProgressState = {
 
 const HISTORY_LIMIT = 30;
 
+/**
+ * Coerces an unknown value — typically JSON parsed from localStorage, which
+ * a user can freely edit and which may predate a schema change — into a
+ * well-typed ProgressState. Any field with the wrong type falls back to
+ * EMPTY_PROGRESS's value individually, rather than trusting the stored
+ * shape and risking a crash later (e.g. calling .includes() on a non-array).
+ */
+export function normalizeProgress(value: unknown): ProgressState {
+  if (typeof value !== "object" || value === null) return EMPTY_PROGRESS;
+  const v = value as Record<string, unknown>;
+
+  const num = (x: unknown, fallback: number) =>
+    typeof x === "number" && Number.isFinite(x) ? x : fallback;
+
+  const history: DayRecord[] = Array.isArray(v.history)
+    ? v.history.filter(
+        (h): h is DayRecord =>
+          typeof h === "object" &&
+          h !== null &&
+          typeof (h as DayRecord).date === "string" &&
+          typeof (h as DayRecord).xp === "number" &&
+          typeof (h as DayRecord).lessonId === "string",
+      )
+    : EMPTY_PROGRESS.history;
+
+  const completedLessonIds: string[] = Array.isArray(v.completedLessonIds)
+    ? v.completedLessonIds.filter((id): id is string => typeof id === "string")
+    : EMPTY_PROGRESS.completedLessonIds;
+
+  return {
+    totalXP: num(v.totalXP, EMPTY_PROGRESS.totalXP),
+    lessonsCompleted: num(v.lessonsCompleted, EMPTY_PROGRESS.lessonsCompleted),
+    currentStreak: num(v.currentStreak, EMPTY_PROGRESS.currentStreak),
+    longestStreak: num(v.longestStreak, EMPTY_PROGRESS.longestStreak),
+    lastCompletedDate: typeof v.lastCompletedDate === "string" ? v.lastCompletedDate : EMPTY_PROGRESS.lastCompletedDate,
+    history,
+    completedLessonIds,
+  };
+}
+
 export function dateKey(d: Date): string {
   const y = d.getFullYear();
   const m = String(d.getMonth() + 1).padStart(2, "0");
