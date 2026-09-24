@@ -80,7 +80,7 @@ state change, it doesn't run ambiently.
 | `DuoButton` | All button actions | Variants: `primary`, `secondary`, `danger`, `outline`. See pressable shadow above. |
 | `Badge` (in `StatBadge.tsx`) | Pill container for a stat | Internal — `StreakBadge`/`XpBadge` are the public API; `tone="warning"` gives the at-risk tint. |
 | `FeedbackBanner` | Post-answer correct/incorrect banner | Slides up; tint background is `*-light`, icon circle is the base color. |
-| `LessonProgressBar` | Lesson-in-progress bar | Track is `gray-200`, fill is `duo-green`. |
+| `LessonProgressBar` | Lesson-in-progress bar | Track is `gray-200`, fill is `duo-green`. Shows a `current/total` completed-activities count beside the bar. |
 | `LessonPath` | Home-screen lesson node(s) | Circular pressable node + locked/upcoming node. |
 | `WeekStreakCalendar` | 7-day streak strip | Reuses `FlameIcon`'s `active` prop; today gets a `ring-2 ring-duo-blue`. |
 | `icons.tsx` | `FlameIcon`, `BoltIcon`, `LockIcon`, `CheckIcon`, `StarIcon` | Plain inline SVG, colored via `var(--color-duo-*)` — no icon font/library. |
