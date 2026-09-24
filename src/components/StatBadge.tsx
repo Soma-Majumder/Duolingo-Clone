@@ -1,15 +1,33 @@
+import { ReactNode } from "react";
 import { StreakStatus } from "@/lib/progress";
 import { BoltIcon, FlameIcon } from "./icons";
+
+function Badge({
+  tone = "neutral",
+  title,
+  children,
+}: {
+  tone?: "neutral" | "warning";
+  title?: string;
+  children: ReactNode;
+}) {
+  return (
+    <div
+      className={`flex items-center gap-1.5 rounded-2xl border-2 px-3 py-1.5 ${
+        tone === "warning" ? "border-duo-orange/40 bg-duo-orange-light" : "border-duo-gray-200 bg-white"
+      }`}
+      title={title}
+    >
+      {children}
+    </div>
+  );
+}
 
 export function StreakBadge({ count, status }: { count: number; status: StreakStatus }) {
   const active = status !== "none";
   return (
-    <div
-      className={`flex items-center gap-1.5 rounded-2xl border-2 px-3 py-1.5 ${
-        status === "at-risk"
-          ? "border-duo-orange/40 bg-orange-50"
-          : "border-duo-gray-200 bg-white"
-      }`}
+    <Badge
+      tone={status === "at-risk" ? "warning" : "neutral"}
       title={
         status === "at-risk"
           ? "Your streak is at risk — complete today's lesson!"
@@ -22,15 +40,15 @@ export function StreakBadge({ count, status }: { count: number; status: StreakSt
       <span className={`text-lg font-extrabold ${active ? "text-duo-eel" : "text-duo-gray-400"}`}>
         {count}
       </span>
-    </div>
+    </Badge>
   );
 }
 
 export function XpBadge({ xp }: { xp: number }) {
   return (
-    <div className="flex items-center gap-1.5 rounded-2xl border-2 border-duo-gray-200 bg-white px-3 py-1.5">
+    <Badge>
       <BoltIcon className="h-6 w-6" />
       <span className="text-lg font-extrabold text-duo-eel">{xp}</span>
-    </div>
+    </Badge>
   );
 }

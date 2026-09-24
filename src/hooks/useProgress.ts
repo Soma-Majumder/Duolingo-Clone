@@ -21,7 +21,9 @@ export function useProgress() {
     // extra render when the persisted value differs from EMPTY_PROGRESS.
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      const parsed: ProgressState = raw ? JSON.parse(raw) : EMPTY_PROGRESS;
+      // Spread over EMPTY_PROGRESS so fields added after a user's progress was
+      // first persisted (e.g. completedLessonIds) default in instead of being undefined.
+      const parsed: ProgressState = raw ? { ...EMPTY_PROGRESS, ...JSON.parse(raw) } : EMPTY_PROGRESS;
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setProgress(reconcileStreak(parsed));
     } catch {

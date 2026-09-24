@@ -22,7 +22,7 @@ export function WeekStreakCalendar({ history }: { history: DayRecord[] }) {
           <div
             className={`flex h-9 w-9 items-center justify-center rounded-full ${
               day.isToday ? "ring-2 ring-duo-blue ring-offset-2" : ""
-            } ${day.done ? "bg-orange-50" : "bg-duo-gray-100"}`}
+            } ${day.done ? "bg-duo-orange-light" : "bg-duo-gray-100"}`}
           >
             <FlameIcon className="h-5 w-5" active={day.done} />
           </div>
