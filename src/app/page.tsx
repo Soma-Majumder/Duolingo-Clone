@@ -10,6 +10,7 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { LessonPath } from "@/components/LessonPath";
 import { WeekStreakCalendar } from "@/components/WeekStreakCalendar";
 import { OwlMascot } from "@/components/OwlMascot";
+import { ClioMascot } from "@/components/ClioMascot";
 
 export default function Home() {
   const router = useRouter();
@@ -44,7 +45,10 @@ export default function Home() {
         )}
 
         <section className="flex flex-col items-center rounded-3xl border-2 border-duo-gray-200 bg-duo-gray-100 py-8">
-          <OwlMascot className="h-20 w-20" />
+          <div className="flex items-end gap-2">
+            <OwlMascot className="h-20 w-20" />
+            <ClioMascot className="h-20 w-20" />
+          </div>
           <LessonPath
             lessonTitle={lesson.title}
             doneToday={doneToday}
