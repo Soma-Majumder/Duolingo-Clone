@@ -8,9 +8,9 @@ export function AppHeader({ progress }: { progress: ProgressState }) {
     <header className="sticky top-0 z-10 flex items-center justify-between border-b-2 border-duo-gray-200 bg-white px-4 py-3 sm:px-8">
       <div className="flex items-center gap-2">
         <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-duo-green text-lg font-black text-white">
-          D
+          C
         </div>
-        <span className="hidden text-lg font-extrabold text-duo-green sm:inline">duolingo</span>
+        <span className="hidden text-lg font-extrabold text-duo-green sm:inline">ChatterMatter</span>
       </div>
       <div className="flex items-center gap-3">
         <StreakBadge count={progress.currentStreak} status={getStreakStatus(progress)} />
