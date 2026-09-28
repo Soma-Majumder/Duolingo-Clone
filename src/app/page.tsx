@@ -9,6 +9,7 @@ import { LessonPath } from "@/components/LessonPath";
 import { WeekStreakCalendar } from "@/components/WeekStreakCalendar";
 import { DragonMascot } from "@/components/DragonMascot";
 import { ClioMascot } from "@/components/ClioMascot";
+import { FlameIcon } from "@/components/icons";
 
 export default function Home() {
   const { language, languageId, setLanguageId, hydrated: langHydrated } = useLanguage();
@@ -31,7 +32,7 @@ export default function Home() {
 
         {streakStatus === "at-risk" && (
           <div className="flex items-center gap-3 rounded-2xl border-2 border-duo-orange bg-duo-orange-light px-4 py-3">
-            <span className="text-2xl">🔥</span>
+            <FlameIcon className="h-7 w-7 shrink-0" />
             <p className="text-sm font-bold text-duo-orange-dark">
               Your {progress.currentStreak}-day streak is at risk! Finish today&apos;s lesson to keep it
               going.
