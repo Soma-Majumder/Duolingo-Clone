@@ -1,5 +1,22 @@
 import { Lesson } from "./exercises";
 
+// Speech text preserves the visible romanized choices while giving Japanese
+// voices native-script input. Particles use their spoken reading in isolation.
+const JAPANESE_SPEECH: Record<string, string> = {
+  mizu: "みず", pan: "パン", hito: "ひと", onna: "おんな",
+  watashi: "わたし", wa: "わ", o: "お", tabemasu: "たべます",
+  "onna no hito": "おんなのひと", "otoko no hito": "おとこのひと",
+  kodomo: "こども", otoko: "おとこ", no: "の", nomimasu: "のみます",
+  "otoko no ko": "おとこのこ", "onna no ko": "おんなのこ", ko: "こ",
+  gyuunyuu: "ぎゅうにゅう", ogenki: "おげんき", desu: "です", ka: "か",
+  hai: "はい", sayounara: "さようなら", haha: "はは", chichi: "ちち",
+  ani: "あに", ane: "あね", musuko: "むすこ", musume: "むすめ",
+  koko: "ここ", ni: "に", imasu: "います", otouto: "おとうと",
+  san: "さん", yon: "よん", ichi: "いち", juu: "じゅう", go: "ご",
+  nana: "なな", kyuu: "きゅう", hon: "ほん", nisatsu: "にさつ",
+  motte: "もって", issatsu: "いっさつ",
+};
+
 // Each language has a 5-lesson path. Lessons unlock in order — see
 // getUnlockedIndex in lib/progress.ts for the completion-gated unlock rule.
 export const LESSON_PATHS: Record<string, Lesson[]> = {
@@ -10,6 +27,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
       exercises: [
         {
           id: "es-1-1",
+          speech: { lang: "es-ES" },
           type: "multipleChoice",
           prompt: "Which word means \"the man\"?",
           options: ["el hombre", "la mujer", "el niño", "la niña"],
@@ -17,6 +35,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "es-1-2",
+          speech: { lang: "es-ES" },
           type: "wordBank",
           prompt: "Translate this sentence",
           subPrompt: "The woman drinks water",
@@ -25,6 +44,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "es-1-3",
+          speech: { lang: "en-US" },
           type: "multipleChoice",
           prompt: "\"Gracias\" means?",
           options: ["Thank you", "Please", "Sorry", "Hello"],
@@ -32,6 +52,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "es-1-4",
+          speech: { lang: "es-ES" },
           type: "wordBank",
           prompt: "Translate this sentence",
           subPrompt: "I eat bread",
@@ -40,6 +61,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "es-1-5",
+          speech: { lang: "es-ES" },
           type: "multipleChoice",
           prompt: "Which one means \"water\"?",
           options: ["pan", "agua", "leche", "mujer"],
@@ -53,6 +75,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
       exercises: [
         {
           id: "es-2-1",
+          speech: { lang: "es-ES" },
           type: "multipleChoice",
           prompt: "Which word means \"the boy\"?",
           options: ["el niño", "la niña", "el hombre", "la mujer"],
@@ -60,6 +83,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "es-2-2",
+          speech: { lang: "es-ES" },
           type: "wordBank",
           prompt: "Translate this sentence",
           subPrompt: "The girl eats bread",
@@ -68,6 +92,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "es-2-3",
+          speech: { lang: "en-US" },
           type: "multipleChoice",
           prompt: "\"Por favor\" means?",
           options: ["Please", "Thank you", "Sorry", "Hello"],
@@ -75,6 +100,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "es-2-4",
+          speech: { lang: "es-ES" },
           type: "multipleChoice",
           prompt: "Which one means \"milk\"?",
           options: ["leche", "agua", "pan", "niño"],
@@ -88,6 +114,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
       exercises: [
         {
           id: "es-3-1",
+          speech: { lang: "en-US" },
           type: "multipleChoice",
           prompt: "\"Buenos días\" means?",
           options: ["Good morning", "Good night", "Goodbye", "See you"],
@@ -95,6 +122,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "es-3-2",
+          speech: { lang: "es-ES" },
           type: "wordBank",
           prompt: "Translate this sentence",
           subPrompt: "How are you?",
@@ -103,6 +131,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "es-3-3",
+          speech: { lang: "en-US" },
           type: "multipleChoice",
           prompt: "\"Lo siento\" means?",
           options: ["Sorry", "Please", "Thanks", "Hello"],
@@ -116,6 +145,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
       exercises: [
         {
           id: "es-4-1",
+          speech: { lang: "es-ES" },
           type: "multipleChoice",
           prompt: "Which word means \"mother\"?",
           options: ["madre", "padre", "hermano", "hermana"],
@@ -123,6 +153,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "es-4-2",
+          speech: { lang: "es-ES" },
           type: "multipleChoice",
           prompt: "Which word means \"father\"?",
           options: ["padre", "madre", "hijo", "hija"],
@@ -130,6 +161,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "es-4-3",
+          speech: { lang: "es-ES" },
           type: "wordBank",
           prompt: "Translate this sentence",
           subPrompt: "My sister is here",
@@ -144,6 +176,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
       exercises: [
         {
           id: "es-5-1",
+          speech: { lang: "es-ES" },
           type: "multipleChoice",
           prompt: "Which one means \"three\"?",
           options: ["tres", "dos", "cuatro", "uno"],
@@ -151,6 +184,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "es-5-2",
+          speech: { lang: "es-ES" },
           type: "multipleChoice",
           prompt: "Which one means \"ten\"?",
           options: ["diez", "cinco", "siete", "nueve"],
@@ -158,6 +192,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "es-5-3",
+          speech: { lang: "es-ES" },
           type: "wordBank",
           prompt: "Translate this sentence",
           subPrompt: "I have two books",
@@ -174,6 +209,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
       exercises: [
         {
           id: "fr-1-1",
+          speech: { lang: "fr-FR" },
           type: "multipleChoice",
           prompt: "Which word means \"the man\"?",
           options: ["l'homme", "la femme", "le garçon", "la fille"],
@@ -181,6 +217,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "fr-1-2",
+          speech: { lang: "fr-FR" },
           type: "wordBank",
           prompt: "Translate this sentence",
           subPrompt: "The woman drinks water",
@@ -189,6 +226,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "fr-1-3",
+          speech: { lang: "en-US" },
           type: "multipleChoice",
           prompt: "\"Merci\" means?",
           options: ["Thank you", "Please", "Sorry", "Hello"],
@@ -196,6 +234,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "fr-1-4",
+          speech: { lang: "fr-FR" },
           type: "wordBank",
           prompt: "Translate this sentence",
           subPrompt: "I eat bread",
@@ -204,6 +243,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "fr-1-5",
+          speech: { lang: "fr-FR" },
           type: "multipleChoice",
           prompt: "Which one means \"water\"?",
           options: ["pain", "l'eau", "lait", "femme"],
@@ -217,6 +257,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
       exercises: [
         {
           id: "fr-2-1",
+          speech: { lang: "fr-FR" },
           type: "multipleChoice",
           prompt: "Which word means \"the boy\"?",
           options: ["le garçon", "la fille", "l'homme", "la femme"],
@@ -224,6 +265,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "fr-2-2",
+          speech: { lang: "fr-FR" },
           type: "wordBank",
           prompt: "Translate this sentence",
           subPrompt: "The girl eats bread",
@@ -232,6 +274,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "fr-2-3",
+          speech: { lang: "en-US" },
           type: "multipleChoice",
           prompt: "\"S'il vous plaît\" means?",
           options: ["Please", "Thank you", "Sorry", "Hello"],
@@ -239,6 +282,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "fr-2-4",
+          speech: { lang: "fr-FR" },
           type: "multipleChoice",
           prompt: "Which one means \"milk\"?",
           options: ["lait", "eau", "pain", "garçon"],
@@ -252,6 +296,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
       exercises: [
         {
           id: "fr-3-1",
+          speech: { lang: "en-US" },
           type: "multipleChoice",
           prompt: "\"Bonjour\" means?",
           options: ["Good morning", "Good night", "Goodbye", "See you"],
@@ -259,6 +304,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "fr-3-2",
+          speech: { lang: "fr-FR" },
           type: "wordBank",
           prompt: "Translate this sentence",
           subPrompt: "How are you?",
@@ -267,6 +313,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "fr-3-3",
+          speech: { lang: "en-US" },
           type: "multipleChoice",
           prompt: "\"Pardon\" means?",
           options: ["Sorry", "Please", "Thanks", "Hello"],
@@ -280,6 +327,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
       exercises: [
         {
           id: "fr-4-1",
+          speech: { lang: "fr-FR" },
           type: "multipleChoice",
           prompt: "Which word means \"mother\"?",
           options: ["mère", "père", "frère", "sœur"],
@@ -287,6 +335,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "fr-4-2",
+          speech: { lang: "fr-FR" },
           type: "multipleChoice",
           prompt: "Which word means \"father\"?",
           options: ["père", "mère", "fils", "fille"],
@@ -294,6 +343,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "fr-4-3",
+          speech: { lang: "fr-FR" },
           type: "wordBank",
           prompt: "Translate this sentence",
           subPrompt: "My sister is here",
@@ -308,6 +358,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
       exercises: [
         {
           id: "fr-5-1",
+          speech: { lang: "fr-FR" },
           type: "multipleChoice",
           prompt: "Which one means \"three\"?",
           options: ["trois", "deux", "quatre", "un"],
@@ -315,6 +366,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "fr-5-2",
+          speech: { lang: "fr-FR" },
           type: "multipleChoice",
           prompt: "Which one means \"ten\"?",
           options: ["dix", "cinq", "sept", "neuf"],
@@ -322,6 +374,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "fr-5-3",
+          speech: { lang: "fr-FR" },
           type: "wordBank",
           prompt: "Translate this sentence",
           subPrompt: "I have two books",
@@ -338,6 +391,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
       exercises: [
         {
           id: "ja-1-1",
+          speech: { lang: "ja-JP", textByChoice: JAPANESE_SPEECH },
           type: "multipleChoice",
           prompt: "Which word means \"water\"?",
           options: ["mizu", "pan", "hito", "onna"],
@@ -345,6 +399,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "ja-1-2",
+          speech: { lang: "ja-JP", textByChoice: JAPANESE_SPEECH },
           type: "wordBank",
           prompt: "Translate this sentence",
           subPrompt: "I eat bread",
@@ -353,6 +408,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "ja-1-3",
+          speech: { lang: "en-US" },
           type: "multipleChoice",
           prompt: "\"Arigatou\" means?",
           options: ["Thank you", "Please", "Sorry", "Hello"],
@@ -360,6 +416,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "ja-1-4",
+          speech: { lang: "ja-JP", textByChoice: JAPANESE_SPEECH },
           type: "multipleChoice",
           prompt: "Which word means \"the woman\"?",
           options: ["onna no hito", "otoko no hito", "kodomo", "pan"],
@@ -367,6 +424,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "ja-1-5",
+          speech: { lang: "ja-JP", textByChoice: JAPANESE_SPEECH },
           type: "wordBank",
           prompt: "Translate this sentence",
           subPrompt: "The man drinks water",
@@ -381,6 +439,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
       exercises: [
         {
           id: "ja-2-1",
+          speech: { lang: "ja-JP", textByChoice: JAPANESE_SPEECH },
           type: "multipleChoice",
           prompt: "Which word means \"boy\"?",
           options: ["otoko no ko", "onna no ko", "hito", "kodomo"],
@@ -388,6 +447,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "ja-2-2",
+          speech: { lang: "ja-JP", textByChoice: JAPANESE_SPEECH },
           type: "wordBank",
           prompt: "Translate this sentence",
           subPrompt: "The girl eats bread",
@@ -396,6 +456,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "ja-2-3",
+          speech: { lang: "en-US" },
           type: "multipleChoice",
           prompt: "\"Onegaishimasu\" means?",
           options: ["Please", "Thank you", "Sorry", "Hello"],
@@ -403,6 +464,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "ja-2-4",
+          speech: { lang: "ja-JP", textByChoice: JAPANESE_SPEECH },
           type: "multipleChoice",
           prompt: "Which one means \"milk\"?",
           options: ["gyuunyuu", "mizu", "pan", "kodomo"],
@@ -416,6 +478,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
       exercises: [
         {
           id: "ja-3-1",
+          speech: { lang: "en-US" },
           type: "multipleChoice",
           prompt: "\"Ohayou gozaimasu\" means?",
           options: ["Good morning", "Good night", "Goodbye", "See you"],
@@ -423,6 +486,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "ja-3-2",
+          speech: { lang: "ja-JP", textByChoice: JAPANESE_SPEECH },
           type: "wordBank",
           prompt: "Translate this sentence",
           subPrompt: "How are you?",
@@ -431,6 +495,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "ja-3-3",
+          speech: { lang: "en-US" },
           type: "multipleChoice",
           prompt: "\"Gomen nasai\" means?",
           options: ["Sorry", "Please", "Thanks", "Hello"],
@@ -444,6 +509,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
       exercises: [
         {
           id: "ja-4-1",
+          speech: { lang: "ja-JP", textByChoice: JAPANESE_SPEECH },
           type: "multipleChoice",
           prompt: "Which word means \"mother\"?",
           options: ["haha", "chichi", "ani", "ane"],
@@ -451,6 +517,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "ja-4-2",
+          speech: { lang: "ja-JP", textByChoice: JAPANESE_SPEECH },
           type: "multipleChoice",
           prompt: "Which word means \"father\"?",
           options: ["chichi", "haha", "musuko", "musume"],
@@ -458,6 +525,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "ja-4-3",
+          speech: { lang: "ja-JP", textByChoice: JAPANESE_SPEECH },
           type: "wordBank",
           prompt: "Translate this sentence",
           subPrompt: "My sister is here",
@@ -472,6 +540,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
       exercises: [
         {
           id: "ja-5-1",
+          speech: { lang: "ja-JP", textByChoice: JAPANESE_SPEECH },
           type: "multipleChoice",
           prompt: "Which one means \"three\"?",
           options: ["san", "ni", "yon", "ichi"],
@@ -479,6 +548,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "ja-5-2",
+          speech: { lang: "ja-JP", textByChoice: JAPANESE_SPEECH },
           type: "multipleChoice",
           prompt: "Which one means \"ten\"?",
           options: ["juu", "go", "nana", "kyuu"],
@@ -486,6 +556,7 @@ export const LESSON_PATHS: Record<string, Lesson[]> = {
         },
         {
           id: "ja-5-3",
+          speech: { lang: "ja-JP", textByChoice: JAPANESE_SPEECH },
           type: "wordBank",
           prompt: "Translate this sentence",
           subPrompt: "I have two books",

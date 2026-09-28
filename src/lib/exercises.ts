@@ -1,3 +1,8 @@
+export interface ChoiceSpeech {
+  lang: "en-US" | "es-ES" | "fr-FR" | "ja-JP";
+  textByChoice?: Record<string, string>;
+}
+
 export interface MultipleChoiceExercise {
   id: string;
   type: "multipleChoice";
@@ -5,6 +10,7 @@ export interface MultipleChoiceExercise {
   subPrompt?: string;
   options: string[];
   answer: string;
+  speech: ChoiceSpeech;
 }
 
 export interface WordBankExercise {
@@ -14,6 +20,7 @@ export interface WordBankExercise {
   subPrompt?: string;
   wordBank: string[];
   answer: string[];
+  speech: ChoiceSpeech;
 }
 
 export type Exercise = MultipleChoiceExercise | WordBankExercise;
