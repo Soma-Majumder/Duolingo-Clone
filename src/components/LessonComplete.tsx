@@ -10,11 +10,13 @@ export function LessonComplete({
   mistakes,
   totalExercises,
   currentStreak,
+  soundControl,
 }: {
   xpEarned: number;
   mistakes: number;
   totalExercises: number;
   currentStreak: number;
+  soundControl?: ReactNode;
 }) {
   const correct = totalExercises - mistakes;
   const perfect = mistakes === 0;
@@ -22,6 +24,7 @@ export function LessonComplete({
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-6 px-4 py-12 text-center">
       <Confetti />
+      {soundControl}
       <ClioMascot className="h-32 w-32 animate-duo-bounce" />
       <div>
         <h1 className="text-3xl font-extrabold text-duo-eel">Lesson Complete!</h1>
