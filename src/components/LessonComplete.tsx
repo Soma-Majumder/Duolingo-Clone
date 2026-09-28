@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { ClioMascot } from "./ClioMascot";
+import { Confetti } from "./Confetti";
 import { DuoButton } from "./DuoButton";
 import { FlameIcon, BoltIcon } from "./icons";
 
@@ -20,6 +21,7 @@ export function LessonComplete({
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-6 px-4 py-12 text-center">
+      <Confetti />
       <ClioMascot className="h-32 w-32 animate-duo-bounce" />
       <div>
         <h1 className="text-3xl font-extrabold text-duo-eel">Lesson Complete!</h1>

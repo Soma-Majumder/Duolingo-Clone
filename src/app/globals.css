@@ -78,6 +78,17 @@ body {
   }
 }
 
+@keyframes confetti-fall {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--confetti-drift), 105vh, 0) rotate(var(--confetti-rotation));
+    opacity: 0.9;
+  }
+}
+
 .animate-duo-pop {
   animation: duo-pop 0.35s ease;
 }
@@ -92,4 +103,10 @@ body {
 
 .animate-duo-slide-up {
   animation: duo-slide-up 0.22s ease-out;
+}
+
+.animate-confetti-fall {
+  animation-name: confetti-fall;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
 }
