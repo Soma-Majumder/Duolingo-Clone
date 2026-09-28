@@ -10,6 +10,8 @@ import { PickedWord, WordBankExercise } from "./exercises/WordBankExercise";
 import { FeedbackBanner } from "./FeedbackBanner";
 import { DuoButton } from "./DuoButton";
 import { LessonComplete } from "./LessonComplete";
+import { SoundToggle } from "./SoundToggle";
+import { useLessonSounds } from "@/hooks/useLessonSounds";
 
 export function LessonRunner({
   lessonId,
@@ -33,6 +35,8 @@ export function LessonRunner({
   const [completed, setCompleted] = useState(false);
   const [result, setResult] = useState<{ xpEarned: number; mistakes: number } | null>(null);
   const recordedRef = useRef(false);
+  const sounds = useLessonSounds();
+  const soundControl = <SoundToggle enabled={sounds.enabled} ready={sounds.ready} onToggle={sounds.toggle} />;
 
   const exercise = exercises[index];
 
@@ -49,6 +53,7 @@ export function LessonRunner({
   }
 
   function handleCheck() {
+    if (checked || !canCheck || recordedRef.current) return;
     let correct = false;
     if (exercise.type === "multipleChoice") {
       correct = mcSelected === exercise.answer;
@@ -57,10 +62,12 @@ export function LessonRunner({
     }
     setIsCorrect(correct);
     setChecked(true);
+    sounds.play(correct ? "correct" : "incorrect");
     if (!correct) setMistakes((m) => m + 1);
   }
 
   function handleContinue() {
+    if (!checked || recordedRef.current) return;
     if (!isCorrect) {
       resetInputs();
       return;
@@ -69,6 +76,7 @@ export function LessonRunner({
       const xpEarned = calculateXp(exercises.length, mistakes);
       if (!recordedRef.current) {
         recordedRef.current = true;
+        sounds.play("complete");
         recordLessonComplete({ lessonId, xpEarned });
       }
       setResult({ xpEarned, mistakes });
@@ -86,6 +94,7 @@ export function LessonRunner({
         mistakes={result.mistakes}
         totalExercises={exercises.length}
         currentStreak={progress.currentStreak}
+        soundControl={soundControl}
       />
     );
   }
@@ -97,6 +106,7 @@ export function LessonRunner({
           &times;
         </Link>
         <LessonProgressBar current={index + (checked && isCorrect ? 1 : 0)} total={exercises.length} />
+        {soundControl}
       </div>
 
       <p className="px-4 text-sm font-bold uppercase tracking-wide text-duo-gray-400 sm:px-8">{title}</p>
