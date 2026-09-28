@@ -9,8 +9,8 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Duolingo Clone — Daily Lesson & Streak",
-  description: "A daily lesson and progress/streak system, cloned from Duolingo.",
+  title: "Duolingo — Daily Lesson & Streak",
+  description: "Practice languages with daily lessons, XP, and streaks on Duolingo.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

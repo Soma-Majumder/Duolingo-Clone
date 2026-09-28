@@ -1,4 +1,4 @@
-# Duolingo-Clone
+# Duolingo
 
 Cloning Duolingo. First feature: a daily lesson and progress/streak system (see the [PRD](.) for requirements).
 
