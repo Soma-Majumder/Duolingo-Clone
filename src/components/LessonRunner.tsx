@@ -13,6 +13,7 @@ import { LessonComplete } from "./LessonComplete";
 import { SoundToggle } from "./SoundToggle";
 import { useLessonSounds } from "@/hooks/useLessonSounds";
 import { DragonEncouragement } from "./DragonEncouragement";
+import { useChoiceSpeech } from "@/hooks/useChoiceSpeech";
 
 export function LessonRunner({
   lessonId,
@@ -38,6 +39,7 @@ export function LessonRunner({
   const [result, setResult] = useState<{ xpEarned: number; mistakes: number } | null>(null);
   const recordedRef = useRef(false);
   const sounds = useLessonSounds();
+  const speech = useChoiceSpeech();
   const soundControl = <SoundToggle enabled={sounds.enabled} ready={sounds.ready} onToggle={sounds.toggle} />;
 
   const exercise = exercises[index];
@@ -56,6 +58,7 @@ export function LessonRunner({
 
   function handleCheck() {
     if (checked || !canCheck || recordedRef.current) return;
+    speech.stop();
     let correct = false;
     if (exercise.type === "multipleChoice") {
       correct = mcSelected === exercise.answer;
@@ -75,6 +78,7 @@ export function LessonRunner({
 
   function handleContinue() {
     if (!checked || recordedRef.current) return;
+    speech.stop();
     if (!isCorrect) {
       resetInputs();
       return;
@@ -118,6 +122,20 @@ export function LessonRunner({
 
       <p className="px-4 text-sm font-bold uppercase tracking-wide text-duo-gray-400 sm:px-8">{title}</p>
 
+      <div className="px-4 pt-3 sm:px-8">
+        <button
+          type="button"
+          aria-label="Read answers aloud"
+          aria-pressed={speech.enabled}
+          disabled={!speech.ready}
+          onClick={speech.toggle}
+          className="rounded-xl border-2 border-duo-gray-200 px-3 py-2 text-sm font-bold text-duo-eel hover:bg-duo-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-duo-blue disabled:opacity-50"
+        >
+          Read aloud: {speech.enabled ? "on" : "off"}
+        </button>
+        <p role="status" className="mt-1 text-sm text-duo-gray-500">{speech.notice}</p>
+      </div>
+
       <main className="flex flex-1 flex-col justify-center px-4 py-8 sm:px-8">
         <div className="mx-auto w-full max-w-2xl">
           <DragonEncouragement
@@ -131,7 +149,11 @@ export function LessonRunner({
               selected={mcSelected}
               checked={checked}
               isCorrect={isCorrect}
-              onSelect={(option) => !checked && setMcSelected(option)}
+              onSelect={(option) => {
+                if (checked) return;
+                setMcSelected(option);
+                speech.speak(option, exercise.speech);
+              }}
             />
           ) : (
             <WordBankExercise
@@ -139,12 +161,16 @@ export function LessonRunner({
               picked={wbPicked}
               checked={checked}
               isCorrect={isCorrect}
-              onPick={(bankIndex) =>
-                setWbPicked((prev) => [...prev, { word: exercise.wordBank[bankIndex], bankIndex }])
-              }
-              onRemove={(pickedIndex) =>
-                setWbPicked((prev) => prev.filter((_, i) => i !== pickedIndex))
-              }
+              onPick={(bankIndex) => {
+                if (checked) return;
+                const word = exercise.wordBank[bankIndex];
+                setWbPicked((prev) => [...prev, { word, bankIndex }]);
+                speech.speak(word, exercise.speech);
+              }}
+              onRemove={(pickedIndex) => {
+                speech.stop();
+                setWbPicked((prev) => prev.filter((_, i) => i !== pickedIndex));
+              }}
             />
           )}
         </div>
