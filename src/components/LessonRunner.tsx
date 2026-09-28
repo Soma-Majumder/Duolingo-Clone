@@ -12,6 +12,7 @@ import { DuoButton } from "./DuoButton";
 import { LessonComplete } from "./LessonComplete";
 import { SoundToggle } from "./SoundToggle";
 import { useLessonSounds } from "@/hooks/useLessonSounds";
+import { DragonEncouragement } from "./DragonEncouragement";
 
 export function LessonRunner({
   lessonId,
@@ -32,6 +33,7 @@ export function LessonRunner({
   const [mcSelected, setMcSelected] = useState<string | null>(null);
   const [wbPicked, setWbPicked] = useState<PickedWord[]>([]);
   const [mistakes, setMistakes] = useState(0);
+  const [dragonMood, setDragonMood] = useState<"hidden" | "happy" | "sad">("hidden");
   const [completed, setCompleted] = useState(false);
   const [result, setResult] = useState<{ xpEarned: number; mistakes: number } | null>(null);
   const recordedRef = useRef(false);
@@ -63,6 +65,11 @@ export function LessonRunner({
     setIsCorrect(correct);
     setChecked(true);
     sounds.play(correct ? "correct" : "incorrect");
+    if (correct && index + 1 >= 2) {
+      setDragonMood("happy");
+    } else if (!correct) {
+      setDragonMood((mood) => mood === "happy" ? "sad" : mood);
+    }
     if (!correct) setMistakes((m) => m + 1);
   }
 
@@ -113,6 +120,11 @@ export function LessonRunner({
 
       <main className="flex flex-1 flex-col justify-center px-4 py-8 sm:px-8">
         <div className="mx-auto w-full max-w-2xl">
+          <DragonEncouragement
+            correctAnswers={index + (checked && isCorrect ? 1 : 0)}
+            mood={dragonMood}
+            onFadeComplete={() => setDragonMood((mood) => mood === "sad" ? "hidden" : mood)}
+          />
           {exercise.type === "multipleChoice" ? (
             <MultipleChoiceExercise
               exercise={exercise}

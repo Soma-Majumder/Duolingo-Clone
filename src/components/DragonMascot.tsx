@@ -1,4 +1,12 @@
-export function DragonMascot({ className = "" }: { className?: string }) {
+export function DragonMascot({
+  className = "",
+  animated = true,
+  sad = false,
+}: {
+  className?: string;
+  animated?: boolean;
+  sad?: boolean;
+}) {
   return (
     <svg
       viewBox="0 0 448 448"
@@ -13,7 +21,7 @@ export function DragonMascot({ className = "" }: { className?: string }) {
           <path d="M365 278C352 278 349 271 355 264L375 241C380 235 386 238 387 245L390 273C391 283 382 285 365 278Z" fill="#F48B21" />
         </g>
         <g id="wing-left">
-          <animateTransform
+          {animated && <animateTransform
             attributeName="transform"
             type="rotate"
             values="20 165 235;-24 165 235;20 165 235"
@@ -22,12 +30,12 @@ export function DragonMascot({ className = "" }: { className?: string }) {
             calcMode="spline"
             keyTimes="0;0.5;1"
             keySplines="0.4 0 0.6 1;0.4 0 0.6 1"
-          />
+          />}
           <path d="M158 218C126 199 95 178 53 171C43 169 39 177 43 186L61 222C42 229 43 234 55 243L88 267C78 283 83 291 96 289C130 285 150 267 169 247Z" fill="#D99114" />
           <path d="M148 235L66 188L90 226L70 237L110 257L99 274C121 267 138 252 148 235Z" fill="#FFE58A" />
         </g>
         <g id="wing-right">
-          <animateTransform
+          {animated && <animateTransform
             attributeName="transform"
             type="rotate"
             values="-20 283 235;24 283 235;-20 283 235"
@@ -36,7 +44,7 @@ export function DragonMascot({ className = "" }: { className?: string }) {
             calcMode="spline"
             keyTimes="0;0.5;1"
             keySplines="0.4 0 0.6 1;0.4 0 0.6 1"
-          />
+          />}
           <path d="M290 218C322 199 353 178 395 171C405 169 409 177 405 186L387 222C406 229 405 234 393 243L360 267C370 283 365 291 352 289C318 285 298 267 279 247Z" fill="#D99114" />
           <path d="M300 235L382 188L358 226L378 237L338 257L349 274C327 267 310 252 300 235Z" fill="#FFE58A" />
         </g>
@@ -66,6 +74,7 @@ export function DragonMascot({ className = "" }: { className?: string }) {
           <path d="M133 172C133 143 150 124 172 124C195 124 211 144 211 171V211C211 231 193 241 170 239C145 237 133 225 133 209Z" fill="#FFDF63" />
           <path d="M236 172C236 143 252 124 275 124C298 124 315 145 315 173V209C315 229 299 240 275 240C251 240 236 229 236 212Z" fill="#FFDF63" />
           <g id="eyes">
+            {sad && <path d="M148 139L192 124M253 124L299 139" fill="none" stroke="#874515" strokeWidth="7" strokeLinecap="round" />}
             <path d="M145 176C145 153 155 139 173 139C191 139 201 155 201 177V203H145Z" fill="#FFFFFF" />
             <path d="M246 176C246 153 257 139 275 139C293 139 305 155 305 177V203H246Z" fill="#FFFFFF" />
             <path d="M167 176C167 163 173 155 183 155C193 155 199 164 199 177V203H167Z" fill="#102633" />
@@ -77,9 +86,11 @@ export function DragonMascot({ className = "" }: { className?: string }) {
             <path d="M180 193C196 183 212 184 224 188C237 184 254 183 270 193C291 205 293 227 279 242C267 255 247 261 224 261C201 261 181 255 169 242C154 226 159 205 180 193Z" fill="#FFDF63" />
             <ellipse cx="190" cy="207" rx="6" ry="8" transform="rotate(-20 190 207)" fill="#D99114" />
             <ellipse cx="259" cy="207" rx="6" ry="8" transform="rotate(20 259 207)" fill="#D99114" />
+            {sad ? <path d="M201 242Q224 220 247 242" fill="none" stroke="#874515" strokeWidth="7" strokeLinecap="round" /> : <>
             <path d="M201 226C212 232 235 232 247 226C251 224 253 227 251 232C247 246 236 253 224 253C212 253 202 247 197 233C195 227 197 224 201 226Z" fill="#874515" />
             <path d="M210 249C215 240 232 238 240 248C230 254 219 255 210 249Z" fill="#F88EBB" />
             <path d="M203 228L207 238C209 242 212 242 214 238L218 231Z" fill="#FFFFFF" />
+            </>}
           </g>
           <ellipse cx="145" cy="221" rx="11" ry="6" fill="#FFF1AB" />
           <ellipse cx="303" cy="221" rx="11" ry="6" fill="#FFF1AB" />

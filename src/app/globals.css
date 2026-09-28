@@ -50,6 +50,43 @@ body {
   }
 }
 
+@keyframes dragon-flap-left {
+  0%, 100% { transform: rotate(0deg); }
+  25%, 75% { transform: rotate(-24deg); }
+  50% { transform: rotate(20deg); }
+}
+
+@keyframes dragon-fade-out {
+  0%, 20% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.dragon-fade-out {
+  animation: dragon-fade-out 1.8s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dragon-fade-out { animation-duration: 1ms; }
+}
+
+@keyframes dragon-flap-right {
+  0%, 100% { transform: rotate(0deg); }
+  25%, 75% { transform: rotate(24deg); }
+  50% { transform: rotate(-20deg); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dragon-celebrate [id="wing-left"] {
+    transform-origin: 165px 235px;
+    animation: dragon-flap-left 0.7s ease-in-out;
+  }
+
+  .dragon-celebrate [id="wing-right"] {
+    transform-origin: 283px 235px;
+    animation: dragon-flap-right 0.7s ease-in-out;
+  }
+}
+
 @keyframes duo-bounce {
   0%,
   100% {

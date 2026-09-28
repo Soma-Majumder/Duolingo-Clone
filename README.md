@@ -36,3 +36,15 @@ the current sound. Each new cue replaces the previous one.
 No audio files, external services, or extra packages are needed. Playback failures
 do not interrupt lessons or visual feedback. If the sound preference cannot be
 saved, the selected setting still applies for the current lesson session.
+
+## Dragon encouragement
+
+Immediately after the second correct answer, the dragon appears with a speech
+bubble saying "Keep going youre doing great". It stays across questions in lessons
+and practice. Its wings flap briefly on each correct answer from that point onward,
+then rest. A wrong answer gives it a sad face and hides the speech bubble; the
+dragon then fades away over 1.8 seconds. It returns on the next correct answer.
+Continuing does not restart the animation. Reduced-motion preferences disable
+flapping and make the fade immediate.
+The message uses reserved space, does not take focus, and needs no dismissal.
+The home-screen dragon keeps its existing animation.
