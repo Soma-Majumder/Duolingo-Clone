@@ -8,6 +8,7 @@ import { useRequireAuth } from "@/hooks/useRequireAuth";
 import { getLessonPath } from "@/lib/lessonContent";
 import { getUnlockedIndex } from "@/lib/progress";
 import { LessonRunner } from "@/components/LessonRunner";
+import { queueLessonUnlock } from "@/lib/lessonUnlock";
 
 export default function LessonPage() {
   const params = useParams<{ index: string }>();
@@ -49,7 +50,10 @@ export default function LessonPage() {
       title={`${language.flag} ${lesson.title}`}
       exercises={lesson.exercises}
       progress={progress}
-      recordLessonComplete={recordLessonComplete}
+      recordLessonComplete={(result) => {
+        recordLessonComplete(result);
+        queueLessonUnlock(path[index + 1]?.id ?? null);
+      }}
     />
   );
 }
