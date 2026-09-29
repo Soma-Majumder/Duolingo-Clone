@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useProgress } from "@/hooks/useProgress";
+import { useRequireAuth } from "@/hooks/useRequireAuth";
 import { getLessonPath } from "@/lib/lessonContent";
 import { getUnlockedIndex } from "@/lib/progress";
 import { Exercise } from "@/lib/exercises";
@@ -23,6 +24,7 @@ export default function LessonPracticePage() {
   const router = useRouter();
   const { language, hydrated: langHydrated } = useLanguage();
   const { progress, hydrated: progressHydrated, recordLessonComplete } = useProgress();
+  const allowed = useRequireAuth();
   const [exercises, setExercises] = useState<Exercise[] | null>(null);
 
   const index = Number(params.index);
@@ -47,7 +49,7 @@ export default function LessonPracticePage() {
     }
   }, [langHydrated, progressHydrated, isValid, router]);
 
-  if (!langHydrated || !progressHydrated || !isValid || !exercises) return null;
+  if (!langHydrated || !progressHydrated || !allowed || !isValid || !exercises) return null;
 
   return (
     <LessonRunner

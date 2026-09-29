@@ -1,9 +1,10 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { DuoButton } from "@/components/DuoButton";
+import { useAuth } from "@/hooks/useAuth";
 import { getDemoCredentials, getSupabase } from "@/lib/supabase";
 
 type Mode = "signin" | "signup";
@@ -17,8 +18,14 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
 
+  const { user } = useAuth();
   const supabase = getSupabase();
   const demo = getDemoCredentials();
+
+  // Already signed in (or just signed in): the login page has nothing to offer.
+  useEffect(() => {
+    if (user) router.replace("/");
+  }, [user, router]);
 
   async function signIn(credentials: { email: string; password: string }) {
     if (!supabase) return;

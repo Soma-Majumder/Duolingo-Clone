@@ -3,8 +3,10 @@
 import { useLanguage } from "@/hooks/useLanguage";
 import { useAuth } from "@/hooks/useAuth";
 import { useProgress } from "@/hooks/useProgress";
+import { useRequireAuth } from "@/hooks/useRequireAuth";
 import { getStreakStatus, yesterdayKey } from "@/lib/progress";
 import { DuoButton } from "@/components/DuoButton";
+import { LoadingScreen } from "@/components/LoadingScreen";
 import { AppHeader } from "@/components/AppHeader";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { LessonPath } from "@/components/LessonPath";
@@ -18,10 +20,11 @@ export default function Home() {
   const { language, languageId, setLanguageId, hydrated: langHydrated } = useLanguage();
   const { progress, hydrated: progressHydrated, resetDemo } = useProgress();
   const { user } = useAuth();
+  const allowed = useRequireAuth();
   const [resetting, setResetting] = useState(false);
 
-  if (!langHydrated || !progressHydrated) {
-    return <div className="min-h-screen bg-white" />;
+  if (!langHydrated || !progressHydrated || !allowed) {
+    return <LoadingScreen />;
   }
 
   const streakStatus = getStreakStatus(progress);
