@@ -13,6 +13,10 @@ export interface ProgressState {
   history: DayRecord[];
   /** IDs of every lesson (path lesson or bonus practice) ever completed. Drives path unlocking. */
   completedLessonIds: string[];
+  /** Streak freezes in stock. Only signed-in accounts earn them; always 0 for local progress. */
+  freezesAvailable: number;
+  /** Dates (YYYY-MM-DD) a freeze protected the streak. Drives the blue days on the calendar. */
+  frozenDates: string[];
 }
 
 export const EMPTY_PROGRESS: ProgressState = {
@@ -23,6 +27,8 @@ export const EMPTY_PROGRESS: ProgressState = {
   lastCompletedDate: null,
   history: [],
   completedLessonIds: [],
+  freezesAvailable: 0,
+  frozenDates: [],
 };
 
 const HISTORY_LIMIT = 30;
@@ -64,6 +70,10 @@ export function normalizeProgress(value: unknown): ProgressState {
     lastCompletedDate: typeof v.lastCompletedDate === "string" ? v.lastCompletedDate : EMPTY_PROGRESS.lastCompletedDate,
     history,
     completedLessonIds,
+    freezesAvailable: num(v.freezesAvailable, EMPTY_PROGRESS.freezesAvailable),
+    frozenDates: Array.isArray(v.frozenDates)
+      ? v.frozenDates.filter((d): d is string => typeof d === "string")
+      : EMPTY_PROGRESS.frozenDates,
   };
 }
 
@@ -146,6 +156,7 @@ export function completeLesson(
     : [...progress.completedLessonIds, lessonId];
 
   return {
+    ...progress,
     totalXP: progress.totalXP + xpEarned,
     lessonsCompleted: progress.lessonsCompleted + 1,
     currentStreak,
