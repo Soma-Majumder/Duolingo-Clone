@@ -83,7 +83,9 @@ state change, it doesn't run ambiently.
 | `LessonProgressBar` | Lesson-in-progress bar | Track is `gray-200`, fill is `duo-green`. Shows a `current/total` completed-activities count beside the bar. |
 | `LessonPath` | Home-screen lesson node(s) | Circular pressable node + locked/upcoming node. |
 | `WeekStreakCalendar` | 7-day streak strip | Reuses `FlameIcon`'s `active` prop; today gets a `ring-2 ring-duo-blue`. |
-| `icons.tsx` | `FlameIcon`, `BoltIcon`, `LockIcon`, `CheckIcon`, `StarIcon` | Plain inline SVG, colored via `var(--color-duo-*)` — no icon font/library. |
+| `StreakPreview` | Static sample week on the login hero | Fixed days (no dates) so it renders the same on server and client; shows a blue frozen day. |
+| `LoadingScreen` | Full-page placeholder while the session/progress loads | Bouncing `DragonMascot` on white; used by the login gate instead of a blank flash. |
+| `icons.tsx` | `FlameIcon`, `BoltIcon`, `LockIcon`, `CheckIcon`, `StarIcon`, `FreezeIcon` | Plain inline SVG, colored via `var(--color-duo-*)` — no icon font/library. |
 
 ### State conventions
 
