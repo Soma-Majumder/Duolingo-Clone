@@ -1,4 +1,4 @@
-export function ClioMascot({ className = "" }: { className?: string }) {
+export function ClioMascot({ className = "", animated = true }: { className?: string; animated?: boolean }) {
   return (
     <svg
       viewBox="0 0 448 448"
@@ -9,18 +9,18 @@ export function ClioMascot({ className = "" }: { className?: string }) {
     >
       <g transform="rotate(9 224 224)">
         <g strokeLinecap="round">
-          <path stroke="#0789DB" strokeWidth="28">
-            <animate
+          <path stroke="#0789DB" strokeWidth="28" d="M130 258C130 284 103 291 104 316C105 331 121 335 124 348">
+            {animated && <animate
               attributeName="d"
               values="M130 258C130 284 103 291 104 316C105 331 121 335 124 348;
                       M130 258C113 287 78 301 61 279C48 262 51 246 57 229;
                       M130 258C130 284 103 291 104 316C105 331 121 335 124 348"
               dur="2.6s"
               repeatCount="indefinite"
-            />
+            />}
           </path>
-          <path stroke="#20B9F4" strokeWidth="31">
-            <animate
+          <path stroke="#20B9F4" strokeWidth="31" d="M175 272C173 300 151 309 158 333C163 351 177 353 172 378">
+            {animated && <animate
               attributeName="d"
               values="M175 272C173 300 151 309 158 333C163 351 177 353 172 378;
                       M175 272C174 301 153 333 132 326C113 320 108 298 117 282;
@@ -28,10 +28,10 @@ export function ClioMascot({ className = "" }: { className?: string }) {
               dur="2.6s"
               begin="0.15s"
               repeatCount="indefinite"
-            />
+            />}
           </path>
-          <path stroke="#0789DB" strokeWidth="32">
-            <animate
+          <path stroke="#0789DB" strokeWidth="32" d="M223 278C224 306 206 320 215 342C223 359 237 365 231 391">
+            {animated && <animate
               attributeName="d"
               values="M223 278C224 306 206 320 215 342C223 359 237 365 231 391;
                       M223 278C224 306 204 326 217 344C230 362 256 347 247 325;
@@ -39,10 +39,10 @@ export function ClioMascot({ className = "" }: { className?: string }) {
               dur="2.6s"
               begin="0.3s"
               repeatCount="indefinite"
-            />
+            />}
           </path>
-          <path stroke="#20B9F4" strokeWidth="31">
-            <animate
+          <path stroke="#20B9F4" strokeWidth="31" d="M271 271C274 294 298 304 291 329C286 347 274 351 281 374">
+            {animated && <animate
               attributeName="d"
               values="M271 271C274 294 298 304 291 329C286 347 274 351 281 374;
                       M271 271C274 300 294 331 315 323C335 316 339 295 330 280;
@@ -50,17 +50,17 @@ export function ClioMascot({ className = "" }: { className?: string }) {
               dur="2.6s"
               begin="0.15s"
               repeatCount="indefinite"
-            />
+            />}
           </path>
-          <path stroke="#0789DB" strokeWidth="28">
-            <animate
+          <path stroke="#0789DB" strokeWidth="28" d="M314 253C314 277 342 286 341 306C340 320 327 326 329 340">
+            {animated && <animate
               attributeName="d"
               values="M314 253C314 277 342 286 341 306C340 320 327 326 329 340;
                       M314 253C335 279 371 298 390 276C403 261 399 242 392 226;
                       M314 253C314 277 342 286 341 306C340 320 327 326 329 340"
               dur="2.6s"
               repeatCount="indefinite"
-            />
+            />}
           </path>
         </g>
         <path

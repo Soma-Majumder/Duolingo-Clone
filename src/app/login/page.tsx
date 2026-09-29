@@ -2,17 +2,14 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { DuoButton } from "@/components/DuoButton";
 import { ClioMascot } from "@/components/ClioMascot";
 import { DragonMascot } from "@/components/DragonMascot";
-import { DuoButton } from "@/components/DuoButton";
-import { StreakPreview } from "@/components/StreakPreview";
+import { LagoonScene } from "@/components/LagoonScene";
 import { useAuth } from "@/hooks/useAuth";
-import { LANGUAGES } from "@/lib/languages";
 import { getDemoCredentials, getSupabase } from "@/lib/supabase";
 
 type Mode = "signin" | "signup";
-
-const REPO_URL = "https://github.com/Soma-Majumder/Duolingo-Clone";
 
 const INPUT_CLASSES =
   "w-full rounded-2xl border-2 border-duo-gray-200 bg-duo-gray-100 px-4 py-3 font-bold text-duo-eel outline-none transition-colors placeholder:text-duo-gray-400 focus:border-duo-blue focus:bg-white";
@@ -30,6 +27,11 @@ export default function LoginPage() {
 
   const supabase = getSupabase();
   const demo = getDemoCredentials();
+  const preview = process.env.NODE_ENV === "development" && !supabase;
+
+  function showPreviewNotice() {
+    setNotice("Preview only. Login and demo access are unavailable without Supabase.");
+  }
 
   // Already signed in (or just signed in): the login page has nothing to offer.
   useEffect(() => {
@@ -50,6 +52,10 @@ export default function LoginPage() {
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
+    if (preview) {
+      showPreviewNotice();
+      return;
+    }
     if (!supabase) return;
     if (mode === "signin") {
       await signIn({ email, password }, "form");
@@ -67,63 +73,57 @@ export default function LoginPage() {
   const signingIn = mode === "signin";
 
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <header className="flex items-center gap-2 px-4 py-4 sm:px-8">
+    <div className="lagoon-page">
+      <header className="lagoon-header relative z-10 flex items-center gap-2 px-5 py-5 sm:px-8">
         <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-duo-green text-lg font-black text-white">
           D
         </div>
         <span className="text-lg font-extrabold text-duo-green">Duolingo</span>
       </header>
 
-      <main className="mx-auto grid w-full max-w-5xl flex-1 grid-cols-1 gap-8 px-4 py-6 sm:px-8 lg:grid-cols-2 lg:content-center lg:gap-x-16 lg:gap-y-6 lg:py-3">
-        <section className="flex min-w-0 flex-col items-center gap-5 text-center lg:col-start-1 lg:row-start-1 lg:items-start lg:text-left">
-          <div className="flex items-end gap-2">
-            <DragonMascot className="h-24 w-24 sm:h-28 sm:w-28 lg:h-40 lg:w-40" />
-            <ClioMascot className="h-24 w-24 sm:h-28 sm:w-28 lg:h-40 lg:w-40" />
+      <main className="lagoon-main">
+        <div className="lagoon-frame">
+          <LagoonScene />
+          <div className="lagoon-card-dragon" aria-hidden="true"><div className="lagoon-float"><DragonMascot animated={false} className="h-full w-full" /></div></div>
+          <div className="lagoon-card-jellyfish" aria-hidden="true"><div className="lagoon-float"><ClioMascot animated={false} className="h-full w-full" /></div></div>
+        <section aria-labelledby="login-heading" className="lagoon-card flex w-full min-w-0 max-w-sm flex-col gap-5 rounded-3xl border-2 border-white bg-white p-6 sm:p-8">
+          <div className="flex flex-col gap-4 text-center">
+            <h1 id="login-heading" className="text-2xl font-extrabold leading-tight text-duo-eel">
+              {signingIn ? <>Learn a language.<br />Build a streak.<br />Have fun.</> : "Create your profile"}
+            </h1>
+            {signingIn && (
+              <>
+                <p className="text-sm font-bold leading-relaxed text-duo-gray-500">
+                  Practice a little every day with bite-sized lessons designed to help you learn, stay motivated, and keep coming back.
+                </p>
+                <ul aria-label="Available languages" className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs font-bold text-duo-eel">
+                  <li className="flex items-center gap-1"><span className="text-lg" aria-hidden="true">🇪🇸</span> Spanish</li>
+                  <li className="flex items-center gap-1"><span className="text-lg" aria-hidden="true">🇫🇷</span> French</li>
+                  <li className="flex items-center gap-1"><span className="text-lg" aria-hidden="true">🇯🇵</span> Japanese</li>
+                </ul>
+              </>
+            )}
           </div>
-          <h1 className="text-3xl font-black text-duo-eel sm:text-4xl">
-            Learn a language in 5 minutes a day.
-          </h1>
-          <p className="max-w-md text-lg font-bold text-duo-gray-500">
-            Bite-sized lessons, daily streaks, and streak freezes that keep your progress safe.
-          </p>
-          <ul className="flex flex-wrap justify-center gap-2 lg:justify-start">
-            {LANGUAGES.map((lang) => (
-              <li
-                key={lang.id}
-                className="flex items-center gap-2 rounded-2xl border-2 border-duo-gray-200 px-3 py-1.5 text-sm font-bold text-duo-eel"
-              >
-                <span className="text-lg">{lang.flag}</span>
-                {lang.name}
-              </li>
-            ))}
-          </ul>
-        </section>
 
-        <section className="mx-auto flex w-full min-w-0 max-w-sm flex-col gap-5 rounded-3xl border-2 border-duo-gray-200 p-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center">
-          <h2 className="text-2xl font-extrabold text-duo-eel">
-            {signingIn ? "Log in" : "Create your profile"}
-          </h2>
-
-          {!supabase ? (
+          {!supabase && !preview ? (
             <p className="rounded-2xl border-2 border-duo-gray-200 bg-duo-gray-100 px-4 py-3 text-sm font-bold text-duo-gray-500">
               Accounts aren&apos;t set up yet. Progress is saved on this device only.
             </p>
           ) : (
             <>
-              {demo && (
+              {(demo || preview) && (
                 <div className="flex flex-col gap-2">
                   <DuoButton
                     type="button"
                     className="w-full"
                     disabled={busy !== null}
-                    onClick={() => signIn(demo, "demo")}
+                    onClick={() => {
+                      if (preview) showPreviewNotice();
+                      else if (demo) void signIn(demo, "demo");
+                    }}
                   >
                     {busy === "demo" ? "Signing in…" : "Try the demo"}
                   </DuoButton>
-                  <p className="text-center text-sm font-bold text-duo-gray-500">
-                    No signup needed. Explore with a demo account.
-                  </p>
                 </div>
               )}
 
@@ -201,24 +201,8 @@ export default function LoginPage() {
           )}
         </section>
 
-        <div className="flex min-w-0 justify-center lg:col-start-1 lg:row-start-2 lg:justify-start">
-          <StreakPreview />
         </div>
       </main>
-
-      <footer className="px-4 py-4 text-center text-xs font-bold text-duo-gray-400">
-        <p>Built with Next.js, Supabase and Tailwind CSS. The demo account resets nightly.</p>
-        <p className="mt-1">
-          <a
-            href={REPO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-duo-blue hover:text-duo-blue-dark"
-          >
-            View the code on GitHub
-          </a>
-        </p>
-      </footer>
     </div>
   );
 }

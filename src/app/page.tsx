@@ -11,10 +11,10 @@ import { AppHeader } from "@/components/AppHeader";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { LessonPath } from "@/components/LessonPath";
 import { WeekStreakCalendar } from "@/components/WeekStreakCalendar";
-import { DragonMascot } from "@/components/DragonMascot";
 import { ClioMascot } from "@/components/ClioMascot";
-import { FlameIcon, FreezeIcon } from "@/components/icons";
-import { useState } from "react";
+import { DragonMascot } from "@/components/DragonMascot";
+import { FlameIcon, FreezeIcon, StarIcon } from "@/components/icons";
+import { useState, type ReactNode } from "react";
 
 export default function Home() {
   const { language, languageId, setLanguageId, hydrated: langHydrated } = useLanguage();
@@ -42,7 +42,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <div className="coastal-home flex min-h-screen flex-col">
       <AppHeader progress={progress} />
 
       <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 px-4 py-8 sm:px-8">
@@ -81,27 +81,47 @@ export default function Home() {
           </div>
         )}
 
-        <section className="flex flex-col items-center rounded-3xl border-2 border-duo-gray-200 bg-duo-gray-100 py-8">
-          <div className="flex items-end gap-2">
-            <DragonMascot className="h-20 w-20" />
-            <ClioMascot className="h-20 w-20" />
-          </div>
+        <section aria-label="Lesson path" className="coastal-map relative isolate flex flex-col items-center pb-32 pt-8">
+          <svg className="coastal-waves" viewBox="0 0 800 1200" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <g fill="none" stroke="#effcf9" strokeLinecap="round">
+              <path d="M-80 430C100 345 215 525 400 445S690 355 880 440" strokeWidth="18" />
+              <path d="M-80 760C120 835 245 660 445 740S735 825 880 735" strokeWidth="24" />
+              <path d="M-80 1040C90 950 250 1110 440 1040S710 960 880 1030" strokeWidth="18" />
+            </g>
+          </svg>
+          <svg className="coastal-hills" viewBox="0 0 600 260" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <path d="M0 90Q60 10 125 100T280 105T450 80T600 95V260H0Z" fill="#c5e8db" />
+            <path d="M0 160Q80 80 170 155T340 150T510 140T600 160V260H0Z" fill="#acdcd4" />
+          </svg>
           <LessonPath languageId={language.id} progress={progress} />
+          <div aria-hidden="true" className="coastal-clio absolute bottom-0 right-2 h-28 w-28 sm:right-8 sm:h-32 sm:w-32">
+            <ClioMascot animated={false} className="h-full w-full" />
+          </div>
         </section>
 
-        <section className="flex flex-col gap-4 rounded-3xl border-2 border-duo-gray-200 p-5">
-          <h2 className="text-lg font-extrabold text-duo-eel">Your progress</h2>
-          <div className={`grid grid-cols-2 gap-3 ${user ? "sm:grid-cols-4" : "sm:grid-cols-3"}`}>
-            <ProgressStat label="Lessons completed" value={progress.lessonsCompleted} />
-            <ProgressStat label="Current streak" value={progress.currentStreak} />
-            <ProgressStat label="Longest streak" value={progress.longestStreak} />
-            {user && <ProgressStat label="Streak freezes" value={progress.freezesAvailable} />}
+        <section aria-labelledby="progress-heading" className="progress-panel">
+          <div className="progress-banner">
+            <div aria-hidden="true" className="progress-dragon">
+              <DragonMascot animated={false} className="h-full w-full" />
+            </div>
+            <h2 id="progress-heading">Your progress</h2>
           </div>
-          <div>
-            <h3 className="mb-2 text-sm font-bold uppercase tracking-wide text-duo-gray-400">
-              This week
-            </h3>
-            <WeekStreakCalendar history={progress.history} frozenDates={progress.frozenDates} />
+          <div className="progress-body">
+            <div className={`progress-stats ${user ? "progress-stats-four" : ""}`}>
+              <ProgressStat label="Lessons completed" value={progress.lessonsCompleted} tone="green" icon={<StarIcon className="h-8 w-8 text-[#58a700]" />} />
+              <ProgressStat label="Current streak" value={progress.currentStreak} tone="sand" icon={<FlameIcon className="h-8 w-8" />} />
+              <ProgressStat label="Longest streak" value={progress.longestStreak} tone="aqua" icon={
+                <svg viewBox="0 0 40 40" className="h-8 w-8" fill="none">
+                  <path d="M6 12L13 18L20 7L27 18L34 12L30 30H10Z" fill="#ffc800" stroke="#e5ac00" strokeWidth="2.5" strokeLinejoin="round" />
+                  <path d="M11 34H29" stroke="#e5ac00" strokeWidth="3" strokeLinecap="round" />
+                </svg>
+              } />
+              {user && <ProgressStat label="Streak freezes" value={progress.freezesAvailable} tone="aqua" icon={<FreezeIcon className="h-8 w-8" />} />}
+            </div>
+            <div className="progress-week">
+              <h3 className="mb-4 text-sm font-extrabold uppercase tracking-wide text-[#54747a]">This week</h3>
+              <WeekStreakCalendar history={progress.history} frozenDates={progress.frozenDates} />
+            </div>
           </div>
         </section>
       </main>
@@ -109,11 +129,12 @@ export default function Home() {
   );
 }
 
-function ProgressStat({ label, value }: { label: string; value: number }) {
+function ProgressStat({ label, value, tone, icon }: { label: string; value: number; tone: "green" | "sand" | "aqua"; icon: ReactNode }) {
   return (
-    <div className="flex flex-col items-center rounded-2xl bg-duo-gray-100 px-3 py-4">
-      <span className="text-2xl font-extrabold text-duo-eel">{value}</span>
-      <span className="text-center text-xs font-bold uppercase text-duo-gray-500">{label}</span>
+    <div className={`progress-stat progress-stat-${tone}`}>
+      <span aria-hidden="true" className="progress-stat-icon">{icon}</span>
+      <span className="progress-stat-value">{value}</span>
+      <span className="progress-stat-label">{label}</span>
     </div>
   );
 }

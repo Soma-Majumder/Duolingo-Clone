@@ -15,6 +15,19 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+### Preview the landing page without Supabase
+
+With `npm run dev` and no Supabase configuration, open
+[http://localhost:3000/login](http://localhost:3000/login). The same landing page
+shows the full login form and demo button in a local design preview.
+Use sample details to try the form, password visibility, and signup view.
+Submitting or clicking the demo button shows a preview notice; it does not
+authenticate, save credentials, or open the game.
+
+This preview is limited to development without a Supabase client. Configured
+environments retain real Supabase authentication. Production builds never enable
+the preview; missing Supabase configuration keeps the accounts-unavailable message.
+
 ## Daily lesson & streak feature
 
 - Pick a language (Spanish, French, or Japanese) and complete that day's short lesson (multiple-choice and word-bank exercises).
