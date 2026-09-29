@@ -4,6 +4,7 @@ import { useEffect, useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useProgress } from "@/hooks/useProgress";
+import { useRequireAuth } from "@/hooks/useRequireAuth";
 import { getLessonPath } from "@/lib/lessonContent";
 import { getUnlockedIndex } from "@/lib/progress";
 import { LessonRunner } from "@/components/LessonRunner";
@@ -13,6 +14,7 @@ export default function LessonPage() {
   const router = useRouter();
   const { language, hydrated: langHydrated } = useLanguage();
   const { progress, hydrated: progressHydrated, recordLessonComplete } = useProgress();
+  const allowed = useRequireAuth();
 
   const path = langHydrated ? getLessonPath(language.id) : [];
   const index = Number(params.index);
@@ -39,7 +41,7 @@ export default function LessonPage() {
     }
   }, [langHydrated, progressHydrated, isValid, router]);
 
-  if (!langHydrated || !progressHydrated || !isValid) return null;
+  if (!langHydrated || !progressHydrated || !allowed || !isValid) return null;
 
   return (
     <LessonRunner
