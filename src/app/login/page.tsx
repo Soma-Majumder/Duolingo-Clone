@@ -75,11 +75,11 @@ export default function LoginPage() {
         <span className="text-lg font-extrabold text-duo-green">Duolingo</span>
       </header>
 
-      <main className="mx-auto grid w-full max-w-5xl flex-1 grid-cols-1 gap-8 px-4 py-6 sm:px-8 lg:grid-cols-2 lg:content-center lg:gap-x-16 lg:gap-y-8">
+      <main className="mx-auto grid w-full max-w-5xl flex-1 grid-cols-1 gap-8 px-4 py-6 sm:px-8 lg:grid-cols-2 lg:content-center lg:gap-x-16 lg:gap-y-6 lg:py-3">
         <section className="flex min-w-0 flex-col items-center gap-5 text-center lg:col-start-1 lg:row-start-1 lg:items-start lg:text-left">
           <div className="flex items-end gap-2">
-            <DragonMascot className="h-24 w-24 sm:h-28 sm:w-28" />
-            <ClioMascot className="h-24 w-24 sm:h-28 sm:w-28" />
+            <DragonMascot className="h-24 w-24 sm:h-28 sm:w-28 lg:h-40 lg:w-40" />
+            <ClioMascot className="h-24 w-24 sm:h-28 sm:w-28 lg:h-40 lg:w-40" />
           </div>
           <h1 className="text-3xl font-black text-duo-eel sm:text-4xl">
             Learn a language in 5 minutes a day.
@@ -206,7 +206,7 @@ export default function LoginPage() {
         </div>
       </main>
 
-      <footer className="px-4 py-6 text-center text-xs font-bold text-duo-gray-400">
+      <footer className="px-4 py-4 text-center text-xs font-bold text-duo-gray-400">
         <p>Built with Next.js, Supabase and Tailwind CSS. The demo account resets nightly.</p>
         <p className="mt-1">
           <a
