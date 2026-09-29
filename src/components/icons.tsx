@@ -95,3 +95,23 @@ export function StarIcon({ className = "" }: { className?: string }) {
     </svg>
   );
 }
+
+export function FreezeIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      stroke="var(--color-duo-blue)"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label="Streak freeze"
+    >
+      <path d="M12 2v20M3.34 7l17.32 10M3.34 17 20.66 7" />
+      <path d="m9 4 3 2.5L15 4M9 20l3-2.5 3 2.5M4 11.5l3.5-.5-1-3.4M20 12.5l-3.5.5 1 3.4M4 12.5l3.5.5-1 3.4M20 11.5 16.5 11l1-3.4" />
+    </svg>
+  );
+}

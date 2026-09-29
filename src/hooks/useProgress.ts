@@ -10,7 +10,7 @@ import {
   reconcileStreak,
 } from "@/lib/progress";
 import { getSupabase } from "@/lib/supabase";
-import { fetchRemoteProgress, recordRemoteCompletion } from "@/lib/remoteProgress";
+import { fetchRemoteProgress, recordRemoteCompletion, resetRemoteDemo } from "@/lib/remoteProgress";
 
 const STORAGE_KEY = "duo-clone-progress-v1";
 
@@ -122,5 +122,13 @@ export function useProgress() {
     })();
   }, []);
 
-  return { progress, hydrated, recordLessonComplete, mode };
+  /** Restores the shared demo account to its seeded state (server rejects anyone else). */
+  const resetDemo = useCallback(async () => {
+    const sb = getSupabase();
+    if (modeRef.current !== "remote" || !sb) return;
+    await resetRemoteDemo(sb);
+    setProgress(await fetchRemoteProgress(sb));
+  }, []);
+
+  return { progress, hydrated, recordLessonComplete, resetDemo, mode };
 }

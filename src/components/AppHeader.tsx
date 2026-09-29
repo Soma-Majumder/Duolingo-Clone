@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
 import { ProgressState, getStreakStatus } from "@/lib/progress";
-import { StreakBadge, XpBadge } from "./StatBadge";
+import { FreezeBadge, StreakBadge, XpBadge } from "./StatBadge";
 
 export function AppHeader({ progress }: { progress: ProgressState }) {
   const { user, ready, signOut, configured } = useAuth();
@@ -18,6 +18,7 @@ export function AppHeader({ progress }: { progress: ProgressState }) {
       </div>
       <div className="flex items-center gap-3">
         <StreakBadge count={progress.currentStreak} status={getStreakStatus(progress)} />
+        {user && <FreezeBadge count={progress.freezesAvailable} />}
         <XpBadge xp={progress.totalXP} />
         {configured &&
           ready &&

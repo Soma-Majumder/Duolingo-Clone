@@ -1,25 +1,42 @@
 "use client";
 
 import { useLanguage } from "@/hooks/useLanguage";
+import { useAuth } from "@/hooks/useAuth";
 import { useProgress } from "@/hooks/useProgress";
-import { getStreakStatus } from "@/lib/progress";
+import { getStreakStatus, yesterdayKey } from "@/lib/progress";
+import { DuoButton } from "@/components/DuoButton";
 import { AppHeader } from "@/components/AppHeader";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { LessonPath } from "@/components/LessonPath";
 import { WeekStreakCalendar } from "@/components/WeekStreakCalendar";
 import { DragonMascot } from "@/components/DragonMascot";
 import { ClioMascot } from "@/components/ClioMascot";
-import { FlameIcon } from "@/components/icons";
+import { FlameIcon, FreezeIcon } from "@/components/icons";
+import { useState } from "react";
 
 export default function Home() {
   const { language, languageId, setLanguageId, hydrated: langHydrated } = useLanguage();
-  const { progress, hydrated: progressHydrated } = useProgress();
+  const { progress, hydrated: progressHydrated, resetDemo } = useProgress();
+  const { user } = useAuth();
+  const [resetting, setResetting] = useState(false);
 
   if (!langHydrated || !progressHydrated) {
     return <div className="min-h-screen bg-white" />;
   }
 
   const streakStatus = getStreakStatus(progress);
+  const isDemo = !!user && user.email === process.env.NEXT_PUBLIC_DEMO_EMAIL;
+  const frozeYesterday = progress.frozenDates.includes(yesterdayKey());
+
+  async function onResetDemo() {
+    setResetting(true);
+    try {
+      await resetDemo();
+    } catch (err) {
+      console.error("Could not reset the demo", err);
+    }
+    setResetting(false);
+  }
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
@@ -30,6 +47,16 @@ export default function Home() {
           <LanguageSwitcher languageId={languageId} onChange={setLanguageId} />
         </div>
 
+        {frozeYesterday && (
+          <div className="flex items-center gap-3 rounded-2xl border-2 border-duo-blue bg-duo-blue-light px-4 py-3">
+            <FreezeIcon className="h-7 w-7 shrink-0" />
+            <p className="text-sm font-bold text-duo-blue-dark">
+              A streak freeze protected your streak yesterday. Finish today&apos;s lesson to keep it
+              going.
+            </p>
+          </div>
+        )}
+
         {streakStatus === "at-risk" && (
           <div className="flex items-center gap-3 rounded-2xl border-2 border-duo-orange bg-duo-orange-light px-4 py-3">
             <FlameIcon className="h-7 w-7 shrink-0" />
@@ -37,6 +64,17 @@ export default function Home() {
               Your {progress.currentStreak}-day streak is at risk! Finish today&apos;s lesson to keep it
               going.
             </p>
+          </div>
+        )}
+
+        {isDemo && (
+          <div className="flex items-center justify-between gap-3 rounded-2xl border-2 border-duo-gray-200 bg-duo-gray-100 px-4 py-3">
+            <p className="text-sm font-bold text-duo-gray-500">
+              You&apos;re using the shared demo account. Anyone can change it.
+            </p>
+            <DuoButton variant="outline" className="shrink-0 px-4 py-2" disabled={resetting} onClick={onResetDemo}>
+              Reset demo
+            </DuoButton>
           </div>
         )}
 
@@ -50,16 +88,17 @@ export default function Home() {
 
         <section className="flex flex-col gap-4 rounded-3xl border-2 border-duo-gray-200 p-5">
           <h2 className="text-lg font-extrabold text-duo-eel">Your progress</h2>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <div className={`grid grid-cols-2 gap-3 ${user ? "sm:grid-cols-4" : "sm:grid-cols-3"}`}>
             <ProgressStat label="Lessons completed" value={progress.lessonsCompleted} />
             <ProgressStat label="Current streak" value={progress.currentStreak} />
             <ProgressStat label="Longest streak" value={progress.longestStreak} />
+            {user && <ProgressStat label="Streak freezes" value={progress.freezesAvailable} />}
           </div>
           <div>
             <h3 className="mb-2 text-sm font-bold uppercase tracking-wide text-duo-gray-400">
               This week
             </h3>
-            <WeekStreakCalendar history={progress.history} />
+            <WeekStreakCalendar history={progress.history} frozenDates={progress.frozenDates} />
           </div>
         </section>
       </main>
