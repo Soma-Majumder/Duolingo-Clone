@@ -82,13 +82,9 @@ export default function LoginPage() {
       </header>
 
       <main className="lagoon-main">
-        <div className="lagoon-frame">
-          <LagoonScene />
-          <div className="lagoon-card-dragon" aria-hidden="true"><div className="lagoon-float"><DragonMascot animated={false} className="h-full w-full" /></div></div>
-          <div className="lagoon-card-jellyfish" aria-hidden="true"><div className="lagoon-float"><ClioMascot animated={false} className="h-full w-full" /></div></div>
-        <section aria-labelledby="login-heading" className="lagoon-card flex w-full min-w-0 max-w-sm flex-col gap-5 rounded-3xl border-2 border-white bg-white p-6 sm:p-8">
-          <div className="flex flex-col gap-4 text-center">
-            <h1 id="login-heading" className="text-2xl font-extrabold leading-tight text-duo-eel">
+        <div className="lagoon-layout">
+          <div className="lagoon-copy">
+            <h1 id="hero-heading" className="font-extrabold leading-tight text-duo-eel">
               {signingIn ? <>Learn a language.<br />Build a streak.<br />Have fun.</> : "Create your profile"}
             </h1>
             {signingIn && (
@@ -96,7 +92,7 @@ export default function LoginPage() {
                 <p className="text-sm font-bold leading-relaxed text-duo-gray-500">
                   Practice a little every day with bite-sized lessons designed to help you learn, stay motivated, and keep coming back.
                 </p>
-                <ul aria-label="Available languages" className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs font-bold text-duo-eel">
+                <ul aria-label="Available languages" className="lagoon-languages flex flex-wrap gap-x-4 gap-y-2 text-sm font-bold text-duo-eel">
                   <li className="flex items-center gap-1"><span className="text-lg" aria-hidden="true">🇪🇸</span> Spanish</li>
                   <li className="flex items-center gap-1"><span className="text-lg" aria-hidden="true">🇫🇷</span> French</li>
                   <li className="flex items-center gap-1"><span className="text-lg" aria-hidden="true">🇯🇵</span> Japanese</li>
@@ -104,6 +100,13 @@ export default function LoginPage() {
               </>
             )}
           </div>
+
+        <div className="lagoon-frame">
+          <LagoonScene />
+          <div className="lagoon-card-dragon" aria-hidden="true"><div className="lagoon-float"><DragonMascot animated={false} className="h-full w-full" /></div></div>
+          <div className="lagoon-card-jellyfish" aria-hidden="true"><div className="lagoon-float"><ClioMascot animated={false} className="h-full w-full" /></div></div>
+        <section aria-labelledby="login-heading" className="lagoon-card flex w-full min-w-0 max-w-sm flex-col gap-5 rounded-3xl border-2 border-white bg-white p-6 sm:p-8">
+          <h2 id="login-heading" className="sr-only">{signingIn ? "Log in" : "Create your profile"}</h2>
 
           {!supabase && !preview ? (
             <p className="rounded-2xl border-2 border-duo-gray-200 bg-duo-gray-100 px-4 py-3 text-sm font-bold text-duo-gray-500">
@@ -201,6 +204,7 @@ export default function LoginPage() {
           )}
         </section>
 
+        </div>
         </div>
       </main>
     </div>
