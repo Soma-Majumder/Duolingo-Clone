@@ -9,9 +9,18 @@ let client: SupabaseClient | null | undefined;
  */
 export function getSupabase(): SupabaseClient | null {
   if (client !== undefined) return client;
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  client = url && key ? createClient(url, key) : null;
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim();
+  client = null;
+  if (url && key) {
+    try {
+      client = createClient(url, key);
+    } catch (err) {
+      // A malformed value (stray quotes, missing https://) must not crash the
+      // build or the page; fall back to local-only progress instead.
+      console.error("Supabase is misconfigured; running without accounts.", err);
+    }
+  }
   return client;
 }
 
