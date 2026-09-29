@@ -16,7 +16,7 @@ const SAMPLE_WEEK: { letter: string; state: DayState }[] = [
 
 export function StreakPreview() {
   return (
-    <div className="w-full max-w-sm rounded-3xl border-2 border-duo-gray-200 bg-white p-5">
+    <div className="w-full max-w-sm rounded-3xl border-2 border-duo-gray-200 bg-white p-4 sm:p-5">
       <div className="mb-4 flex items-center gap-2">
         <FlameIcon className="h-7 w-7" />
         <span className="text-lg font-extrabold text-duo-eel">7 day streak</span>
@@ -26,7 +26,7 @@ export function StreakPreview() {
           <div key={i} className="flex flex-col items-center gap-1">
             <span className="text-xs font-bold text-duo-gray-400">{day.letter}</span>
             <div
-              className={`flex h-10 w-10 items-center justify-center rounded-full ${
+              className={`flex h-9 w-9 items-center sm:h-10 sm:w-10 justify-center rounded-full ${
                 day.state === "frozen" ? "bg-duo-blue-light" : "bg-duo-orange-light"
               } ${day.state === "today" ? "ring-2 ring-duo-blue ring-offset-2" : ""}`}
             >

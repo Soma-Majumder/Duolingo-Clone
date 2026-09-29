@@ -75,8 +75,8 @@ export default function LoginPage() {
         <span className="text-lg font-extrabold text-duo-green">Duolingo</span>
       </header>
 
-      <main className="mx-auto grid w-full max-w-5xl flex-1 gap-8 px-4 py-6 sm:px-8 lg:grid-cols-2 lg:content-center lg:gap-x-16 lg:gap-y-8">
-        <section className="flex flex-col items-center gap-5 text-center lg:col-start-1 lg:row-start-1 lg:items-start lg:text-left">
+      <main className="mx-auto grid w-full max-w-5xl flex-1 grid-cols-1 gap-8 px-4 py-6 sm:px-8 lg:grid-cols-2 lg:content-center lg:gap-x-16 lg:gap-y-8">
+        <section className="flex min-w-0 flex-col items-center gap-5 text-center lg:col-start-1 lg:row-start-1 lg:items-start lg:text-left">
           <div className="flex items-end gap-2">
             <DragonMascot className="h-24 w-24 sm:h-28 sm:w-28" />
             <ClioMascot className="h-24 w-24 sm:h-28 sm:w-28" />
@@ -100,7 +100,7 @@ export default function LoginPage() {
           </ul>
         </section>
 
-        <section className="mx-auto flex w-full max-w-sm flex-col gap-5 rounded-3xl border-2 border-duo-gray-200 p-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center">
+        <section className="mx-auto flex w-full min-w-0 max-w-sm flex-col gap-5 rounded-3xl border-2 border-duo-gray-200 p-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center">
           <h2 className="text-2xl font-extrabold text-duo-eel">
             {signingIn ? "Log in" : "Create your profile"}
           </h2>
@@ -201,7 +201,7 @@ export default function LoginPage() {
           )}
         </section>
 
-        <div className="flex justify-center lg:col-start-1 lg:row-start-2 lg:justify-start">
+        <div className="flex min-w-0 justify-center lg:col-start-1 lg:row-start-2 lg:justify-start">
           <StreakPreview />
         </div>
       </main>
