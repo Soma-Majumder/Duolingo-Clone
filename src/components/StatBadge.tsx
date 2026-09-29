@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { StreakStatus } from "@/lib/progress";
-import { BoltIcon, FlameIcon } from "./icons";
+import { BoltIcon, FlameIcon, FreezeIcon } from "./icons";
 
 function Badge({
   tone = "neutral",
@@ -49,6 +49,23 @@ export function XpBadge({ xp }: { xp: number }) {
     <Badge>
       <BoltIcon className="h-6 w-6" />
       <span className="text-lg font-extrabold text-duo-eel">{xp}</span>
+    </Badge>
+  );
+}
+
+export function FreezeBadge({ count }: { count: number }) {
+  return (
+    <Badge
+      title={
+        count > 0
+          ? `${count} streak freeze${count === 1 ? "" : "s"}: a missed day won't break your streak.`
+          : "No streak freezes. Earn one at every 7-day streak."
+      }
+    >
+      <FreezeIcon className={`h-6 w-6 ${count > 0 ? "" : "opacity-40"}`} />
+      <span className={`text-lg font-extrabold ${count > 0 ? "text-duo-eel" : "text-duo-gray-400"}`}>
+        {count}
+      </span>
     </Badge>
   );
 }
