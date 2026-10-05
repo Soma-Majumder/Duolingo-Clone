@@ -5,8 +5,8 @@
 -- enable it in Dashboard -> Database -> Extensions -> pg_cron, then re-run.
 --
 -- Every night at 08:00 UTC (about 3-4am US Eastern) the demo profile goes back
--- to its seeded state: a 5-day streak ending yesterday, 1 freeze, no lessons
--- completed (see 0003_demo_starts_with_locked_path.sql).
+-- to its seeded state: a 2-day streak ending yesterday with one frozen day,
+-- 1 freeze, 100 XP (see 0004_demo_shows_streak_freeze.sql).
 -- Safe to re-run: the job is unscheduled and recreated.
 
 create extension if not exists pg_cron with schema pg_catalog;
