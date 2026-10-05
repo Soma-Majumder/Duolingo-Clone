@@ -12,11 +12,9 @@ Click **Try the demo** to jump straight in, no sign-up needed.
 
 ### 🎬 Watch the demo
 
-<a href="docs/video/duolingo-clone-demo.mp4">
-  <img src="docs/images/landing.webp" alt="Landing page. Click to watch the demo video." width="800">
-</a>
+https://github.com/user-attachments/assets/afa2af29-3022-408f-ad1a-9a2bcc370d96
 
-▶️ [**Click to watch the demo video**](docs/video/duolingo-clone-demo.mp4)
+Video not playing? [Open it here](docs/video/duolingo-clone-demo.mp4).
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
