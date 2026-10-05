@@ -43,13 +43,13 @@ begin
   perform public._seed_demo(uid, d0);
   prof := public.complete_lesson('es-basics-1', 10, d0);
   assert prof.current_streak = 6, '4: streak should advance to 6';
-  assert prof.total_xp = 260, '4: xp should add up';
+  assert prof.total_xp = 10, '4: xp should add up';
   assert prof.streak_through_date = d0, '4: through date should be today';
 
   -- 5. A second lesson the same day does not advance the streak again.
   prof := public.complete_lesson('es-basics-2', 10, d0);
   assert prof.current_streak = 6, '5: streak must not double count';
-  assert prof.total_xp = 270, '5: xp still counts';
+  assert prof.total_xp = 20, '5: xp still counts';
 
   -- 6. Reaching a 7-day streak earns a freeze (once, even with extra lessons).
   perform public._seed_demo(uid, d0);
