@@ -12,11 +12,9 @@ Click **Try the demo** to jump straight in, no sign-up needed.
 
 ### 🎬 Watch the demo
 
-<a href="docs/video/duolingo-clone-demo.mp4">
-  <img src="docs/images/landing.webp" alt="Landing page. Click to watch the demo video." width="800">
-</a>
+https://github.com/user-attachments/assets/afa2af29-3022-408f-ad1a-9a2bcc370d96
 
-▶️ [**Click to watch the demo video**](docs/video/duolingo-clone-demo.mp4)
+Video not playing? [Open it here](docs/video/duolingo-clone-demo.mp4).
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
@@ -107,7 +105,7 @@ Duolingo has many features: leagues, hearts, gems, friends, stories and more. We
 |---|---|
 | ✅ **Must have** | Learning path with lessons that unlock in order · multiple choice and word bank exercises with feedback · XP · daily streak · **streak freeze** · saved progress with accounts |
 | 👍 **Should have** | One-click demo login · week streak calendar · works on phones · automatic checks on every pull request |
-| 🙂 **Could have** | Sound effects · read aloud · confetti · dragon encouragement · lagoon theme · practice mode |
+| 🙂 **Could have** | Sound effects · read aloud · confetti · Draco's encouragement · lagoon theme · practice mode |
 | ⛔ **Won't have (this cycle)** | Leagues and leaderboards · hearts and lives · gem shop and payments · speaking exercises with a microphone · friends · push notifications · moving local progress into a new account |
 
 ### ⚖️ Impact / Effort
@@ -124,7 +122,7 @@ Both core features are **big bets**: worth the effort because they drive the hab
 1. 🔁 **The habit loop comes first.** Every feature had to help people start a lesson or come back tomorrow.
 2. 🛡️ **Progress you can trust.** Streaks are enforced on the server and saved to your account, so they can't be faked or lost.
 3. 🚪 **Zero-friction trial.** Anyone can try the full app in one click with the demo.
-4. 🎉 **Delight at the right moments.** Sound, voice, confetti and the dragon reward finishing.
+4. 🎉 **Delight at the right moments.** Sound, voice, confetti and Draco reward finishing.
 5. ✂️ **Keep running costs low.** Browser-made sounds and voices, and a demo that resets itself.
 
 ### 🆕 New information
@@ -145,7 +143,7 @@ Things we learned during the two weeks that changed our plan:
 ### 🏝️ The landing page
 
 <div align="center">
-<img src="docs/images/landing.webp" alt="Landing page with the Try the demo button, the dragon and the jellyfish" width="800">
+<img src="docs/images/landing.webp" alt="Landing page with the Try the demo button, Draco the dragon and Clio the jellyfish" width="800">
 </div>
 
 ### 🗺️ The Learning Path
@@ -165,9 +163,9 @@ The demo account: Basics 1 and 2 are done ✅, Phrases is ready to start ⭐, an
 
 <div align="center">
 
-**🧩 Word bank, with the dragon cheering you on 🐉**
+**🧩 Word bank, with Draco the dragon cheering you on 🐉**
 
-<img src="docs/images/exercise-word-bank.webp" alt="Word bank exercise with the dragon's speech bubble" width="700">
+<img src="docs/images/exercise-word-bank.webp" alt="Word bank exercise with Draco's speech bubble" width="700">
 
 </div>
 
@@ -188,9 +186,9 @@ The calendar shows two 🔥 lesson days with a ❄️ frozen day between them, s
 ### 🐉 Meet the mascots
 
 <div align="center">
-<img src="docs/images/mascots.png" alt="The yellow dragon and Clio the blue jellyfish" width="400">
+<img src="docs/images/mascots.png" alt="Draco the yellow dragon and Clio the blue jellyfish" width="400">
 
-The **dragon** guides you along the path, and **Clio the jellyfish** celebrates with you.
+The dragon, **Draco**, guides you along the path, and **Clio the jellyfish** celebrates with you! 🎉🥳
 
 </div>
 
@@ -206,14 +204,14 @@ timeline
     Sep 23 : Next.js app scaffolded
            : Daily lesson and streak system
            : CI (lint, test, build) on every PR
-    Sep 24 : Clio jellyfish and dragon mascots
+    Sep 24 : Clio the jellyfish and Draco the dragon
            : Design system
            : 5-lesson unlockable path
            : Lesson progress bar
     Sep 27 : New flame icon
     Sep 28 : Confetti on lesson complete
            : Sound effects and mute
-           : Dragon encouragement
+           : Draco's encouragement
            : Answers read aloud
     Sep 29 : Supabase accounts and demo login
            : Streak freezes
@@ -237,7 +235,7 @@ timeline
 | **Lessons** | None | 7-lesson paths in 3 languages |
 | **Progress** | None | XP, streaks, streak freezes, week calendar |
 | **Accounts** | None | Supabase accounts and a one-click demo |
-| **Feel** | Silent and static | Sound, spoken answers, confetti, encouraging dragon |
+| **Feel** | Silent and static | Sound, spoken answers, confetti, Draco cheering you on |
 | **Look** | Default | Lagoon-themed landing page and lesson map |
 | **Quality** | None | CI on every PR, unit tests, SQL streak tests |
 
@@ -250,7 +248,7 @@ timeline
 - 🏗️ Set up the project (Next.js, TypeScript, Tailwind) and the CI pipeline.
 - 📖 Built the **daily lesson and streak system**: exercises, XP, streak logic, the week calendar.
 - 🗺️ Turned the single lesson into an **unlockable path**, later extended to 7 lessons per language.
-- 🎨 Wrote the **design system** and added the **Clio jellyfish** and **dragon** mascots.
+- 🎨 Wrote the **design system** and added the mascots, **Clio the jellyfish** and **Draco the dragon**.
 - 📊 Added the lesson progress bar and fixed the skipped lesson-complete screen.
 - 🛡️ Made saved progress resistant to corrupted browser data.
 - 🔐 Built **Supabase accounts**, the **Try the demo** login and the login gate.
@@ -267,7 +265,7 @@ timeline
 ### 🟠 Dennys: sound, voice and the lagoon look
 
 - 🔊 Added **sound effects** for right and wrong answers, with a mute button.
-- 🐉 Added **dragon encouragement**: it cheers you on and reacts to your answers.
+- 🐉 Added **Draco's encouragement**: Draco cheers you on and reacts to your answers.
 - 🗣️ Made answer choices **read aloud** in a voice that matches the language, including native Japanese.
 - 🏷️ Restored the Duolingo branding across the site.
 - 🏝️ Redesigned the landing page and lesson map with a **lagoon theme**, including an unlock animation.
@@ -296,7 +294,7 @@ We judged every feature against **four KPI categories** and **four value levers*
 | Streaks and streak freezes (Soma) | 🔁 Retention | 🔁 Retention | Return rate after 7 days, streak length |
 | Accounts and one-click demo (Soma) | 🧲 Acquisition | ✂️ Cost reduction | Share of visitors who try the demo |
 | Confetti (Shawn) | 💪 Engagement | 🔁 Retention | Next lesson started right after finishing |
-| Sound, voice and dragon (Dennys) | 💪 Engagement | 🌟 Differentiation | Lesson completion rate |
+| Sound, voice and Draco (Dennys) | 💪 Engagement | 🌟 Differentiation | Lesson completion rate |
 | Lagoon redesign (Dennys) | 🧲 Acquisition | 🌟 Differentiation | Sign-up conversion |
 
 **Why these matter:**
@@ -355,7 +353,7 @@ The demo is shared, so anyone can change it. It **resets itself every night at 0
 
 - 🔊 **Sound effects:** original Web Audio tones for right and wrong answers and for finishing a lesson. No audio files, no extra packages. There's a Sound on/off button, and your choice is remembered.
 - 🗣️ **Read aloud:** picking an answer or a word tile reads it in a matching browser voice. Japanese choices show romaji but are spoken from native script. It has its own on/off toggle. No API key or microphone needed.
-- 🐉 **Dragon encouragement:** after your second correct answer, the dragon appears with a speech bubble cheering you on. It flaps on correct answers and looks sad on wrong ones.
+- 🐉 **Draco's encouragement:** after your second correct answer, Draco the dragon appears with a speech bubble cheering you on. Draco flaps on correct answers and looks sad on wrong ones.
 - 🎉 **Confetti** when you finish a lesson.
 - ✨ **Unlock animation** when a new lesson opens.
 - ♿ **Reduced motion respected:** animations turn off if your device asks for reduced motion.

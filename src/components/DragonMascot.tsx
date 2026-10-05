@@ -13,7 +13,7 @@ export function DragonMascot({
       className={className}
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-label="Friendly yellow dragon"
+      aria-label="Draco, the friendly yellow dragon"
     >
       <g transform="rotate(-6 224 224)">
         <g id="tail">
