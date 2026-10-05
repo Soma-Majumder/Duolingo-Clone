@@ -228,3 +228,30 @@ body {
 .progress-week > div > div { min-width: 0; }
 .progress-week > div > div > div { width: clamp(26px, 7vw, 40px); height: clamp(26px, 7vw, 40px); }
 .progress-week > div { gap: 4px; }
+
+/* Keep the introduction outside the form, with a shared responsive layout. */
+.lagoon-layout { display: grid; grid-template-columns: 384px minmax(0, 1fr); align-items: center; gap: 72px; width: 100%; max-width: 920px; }
+.lagoon-layout .lagoon-frame { grid-column: 1; grid-row: 1; }
+.lagoon-copy { position: relative; z-index: 2; grid-column: 2; grid-row: 1; display: flex; flex-direction: column; gap: 24px; }
+.lagoon-copy h1 { font-size: clamp(30px, 3.3vw, 42px); }
+.lagoon-copy p { max-width: 400px; color: #49676b; font-size: 16px; }
+.lagoon-layout .lagoon-card-dragon { left: 8px; right: auto; top: -116px; width: 124px; }
+@media (min-width: 901px) {
+  .lagoon-layout .lagoon-scene { left: calc(50% + (min(920px, 100vw - 48px) - 384px) / 2); }
+  .lagoon-layout .lagoon-card-jellyfish { left: auto; right: calc(384px - min(920px, 100vw - 48px)); top: calc(100% + 18px); }
+}
+@media (max-width: 900px) {
+  .lagoon-layout { grid-template-columns: minmax(0, 384px); justify-content: center; gap: 86px; }
+  .lagoon-copy { grid-column: 1; grid-row: 1; gap: 16px; text-align: center; }
+  .lagoon-copy h1 { font-size: 30px; }
+  .lagoon-copy p { font-size: 14px; }
+  .lagoon-languages { justify-content: center; }
+  .lagoon-layout .lagoon-frame { grid-row: 2; }
+  .lagoon-layout .lagoon-card-dragon { left: -8px; top: -78px; width: 88px; }
+  .lagoon-main { padding-top: 32px; }
+}
+
+.lagoon-languages { width: 100%; max-width: 400px; justify-content: center; align-items: center; column-gap: 24px; font-size: 16px; }
+.lagoon-languages li { gap: 8px; }
+.lagoon-languages li > span { font-size: 26px; line-height: 1.2; }
+@media (max-width: 420px) { .lagoon-languages { column-gap: 16px; font-size: 15px; } }
