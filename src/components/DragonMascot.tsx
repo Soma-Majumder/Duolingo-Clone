@@ -1,14 +1,17 @@
+import type { SVGProps } from "react";
+
 export function DragonMascot({
   className = "",
   animated = true,
   sad = false,
-}: {
-  className?: string;
+  ...props
+}: SVGProps<SVGSVGElement> & {
   animated?: boolean;
   sad?: boolean;
 }) {
   return (
     <svg
+      {...props}
       viewBox="0 0 448 448"
       className={className}
       xmlns="http://www.w3.org/2000/svg"
@@ -86,11 +89,11 @@ export function DragonMascot({
             <path d="M180 193C196 183 212 184 224 188C237 184 254 183 270 193C291 205 293 227 279 242C267 255 247 261 224 261C201 261 181 255 169 242C154 226 159 205 180 193Z" fill="#FFDF63" />
             <ellipse cx="190" cy="207" rx="6" ry="8" transform="rotate(-20 190 207)" fill="#D99114" />
             <ellipse cx="259" cy="207" rx="6" ry="8" transform="rotate(20 259 207)" fill="#D99114" />
-            {sad ? <path d="M201 242Q224 220 247 242" fill="none" stroke="#874515" strokeWidth="7" strokeLinecap="round" /> : <>
+            {sad ? <path d="M201 242Q224 220 247 242" fill="none" stroke="#874515" strokeWidth="7" strokeLinecap="round" /> : <g>
             <path d="M201 226C212 232 235 232 247 226C251 224 253 227 251 232C247 246 236 253 224 253C212 253 202 247 197 233C195 227 197 224 201 226Z" fill="#874515" />
             <path d="M210 249C215 240 232 238 240 248C230 254 219 255 210 249Z" fill="#F88EBB" />
             <path d="M203 228L207 238C209 242 212 242 214 238L218 231Z" fill="#FFFFFF" />
-            </>}
+            </g>}
           </g>
           <ellipse cx="145" cy="221" rx="11" ry="6" fill="#FFF1AB" />
           <ellipse cx="303" cy="221" rx="11" ry="6" fill="#FFF1AB" />
