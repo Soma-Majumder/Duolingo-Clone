@@ -8,6 +8,8 @@ Bite-sized lessons in 🇪🇸 Spanish, 🇫🇷 French and 🇯🇵 Japanese, w
 
 ### 👉 [**Try it live: duolingo-clone-pursuit.vercel.app**](https://duolingo-clone-pursuit.vercel.app) 👈
 
+<sub>Cmd/Ctrl-click to open in a new tab</sub>
+
 Click **Try the demo** to jump straight in, no sign-up needed.
 
 ### 🎬 Watch the demo
