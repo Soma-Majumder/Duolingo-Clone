@@ -1,10 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 
-// Lessons sit behind sign-in, so only the public entry points are listed.
+// The root URL is the main shared link; lessons sit behind sign-in, so only it is listed.
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    { url: `${SITE_URL}/login`, changeFrequency: "monthly", priority: 1 },
-    { url: `${SITE_URL}/`, changeFrequency: "monthly", priority: 0.8 },
-  ];
+  return [{ url: `${SITE_URL}/`, changeFrequency: "monthly", priority: 1 }];
 }

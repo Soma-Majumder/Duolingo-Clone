@@ -6,7 +6,7 @@
 
 Bite-sized lessons in 🇪🇸 Spanish, 🇫🇷 French and 🇯🇵 Japanese, with daily streaks, streak freezes and real accounts.
 
-### 👉 [**Try it live: duolingo-clone-pursuit.vercel.app**](https://duolingo-clone-pursuit.vercel.app/login) 👈
+### 👉 [**Try it live: duolingo-clone-pursuit.vercel.app**](https://duolingo-clone-pursuit.vercel.app) 👈
 
 Click **Try the demo** to jump straight in, no sign-up needed.
 
@@ -334,7 +334,7 @@ We judged every feature against **four KPI categories** and **four value levers*
 
 ## 🎮 The demo account
 
-Click **Try the demo** on the [live site](https://duolingo-clone-pursuit.vercel.app/login) to explore without signing up. The demo is set up to show every feature:
+Click **Try the demo** on the [live site](https://duolingo-clone-pursuit.vercel.app) to explore without signing up. The demo is set up to show every feature:
 
 - 🔥 **2-day streak** (longest: 2)
 - ❄️ **1 streak freeze** in stock, plus one already used on the calendar
