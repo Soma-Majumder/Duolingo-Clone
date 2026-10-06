@@ -192,6 +192,20 @@ The dragon, **Draco**, guides you along the path, and **Clio the jellyfish** cel
 
 </div>
 
+### 🔗 Social card and favicon
+
+When you share [the live site](https://duolingo-clone-pursuit.vercel.app) on iMessage, Slack, LinkedIn or X, this card shows up in the link preview. It's drawn at build time from the same lagoon and mascot art the app uses.
+
+<div align="center">
+<img src="docs/images/social-card.png" alt="Social card: Duolingo Clone, Learn a language. Build a streak. Have fun., Spanish, French and Japanese, with Draco in the sky and Clio in the lagoon" width="800">
+</div>
+
+Clio is the favicon in the browser tab, and she gets the lagoon sky behind her as the iPhone home-screen icon.
+
+| Browser tab 🌐 | iPhone home screen 📱 |
+|:---:|:---:|
+| <img src="docs/images/favicon.png" alt="Clio the jellyfish favicon" width="96"> | <img src="docs/images/apple-icon.png" alt="Clio the jellyfish on the lagoon sky, the home-screen icon" width="96"> |
+
 ---
 
 ## 🗓️ Two weeks of progress
@@ -410,7 +424,8 @@ The streak and freeze rules have their own SQL test: run [`supabase/tests/streak
 
 ```
 src/
-  app/               pages: home, /login, /lesson/[index], practice
+  app/               pages: home, /login, /lesson/[index], practice;
+                     SEO metadata, social card, favicon, robots, sitemap
   components/        lesson path, exercises, mascots, confetti, calendar
   hooks/             auth, progress, language, sounds, speech
   lib/               lesson content, streak logic, Supabase client
