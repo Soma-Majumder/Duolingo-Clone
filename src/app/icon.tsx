@@ -9,7 +9,7 @@ export default function Icon() {
   return new ImageResponse(
     (
       <div style={{ display: "flex", width: "100%", height: "100%" }}>
-        <ClioMascot animated={false} viewBox="52 58 340 340" width={192} height={192} />
+        <ClioMascot animated={false} viewBox="76 56 296 296" width={192} height={192} />
       </div>
     ),
     size,
