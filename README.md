@@ -442,6 +442,6 @@ DESIGN_SYSTEM.md     colors, components and conventions
 
 <div align="center">
 
-Made with 💚 by **Soma**, **Shawn** and **Dennys**
+Made with 💚 by **Soma**, **Shawn**, and **Dennys**
 
 </div>
