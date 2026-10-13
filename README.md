@@ -261,6 +261,10 @@ timeline
 
 ### 🟢 Soma: the core loop, accounts and streaks
 
+<img src="docs/images/team/soma.webp" alt="Soma smiling in a pink top" width="140">
+
+👋 Come say hi! Soma would love to connect: [🐙 GitHub](https://github.com/Soma-Majumder) · [💼 LinkedIn](https://www.linkedin.com/in/somamajumder/)
+
 - 🏗️ Set up the project (Next.js, TypeScript, Tailwind) and the CI pipeline.
 - 📖 Built the **daily lesson and streak system**: exercises, XP, streak logic, the week calendar.
 - 🗺️ Turned the single lesson into an **unlockable path**, later extended to 7 lessons per language.
@@ -274,11 +278,19 @@ timeline
 
 ### 🔵 Shawn: the celebration moment
 
+<img src="docs/images/team/shawn.webp" alt="Shawn smiling in a black top" width="140">
+
+🎊 Drop by and say hello! Always happy to chat: [🐙 GitHub](https://github.com/Shawn-Bi) · [💼 LinkedIn](https://www.linkedin.com/in/shawn-bi-187a05309/)
+
 - 🎉 Added the **confetti animation** after every completed lesson, so finishing feels like a win.
 
 <img src="docs/images/lesson-complete-confetti.webp" alt="Confetti falling over the Lesson Complete screen" width="500">
 
 ### 🟠 Dennys: sound, voice and the lagoon look
+
+<img src="docs/images/team/dennys.webp" alt="Dennys in a black and white varsity jacket" width="140">
+
+🌴 Let's connect! Reach out anytime: [🐙 GitHub](https://github.com/antunishdPursuit) · [💼 LinkedIn](https://www.linkedin.com/in/dennys-antunish/)
 
 - 🔊 Added **sound effects** for right and wrong answers, with a mute button.
 - 🐉 Added **Draco's encouragement**: Draco cheers you on and reacts to your answers.
